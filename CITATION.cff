@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Counselor Workflow Showcase"
+message: "If this educational case study helps your work, please cite the repository."
+type: software
+authors:
+  - family-names: Gu
+    given-names: Hang
+repository-code: "https://github.com/GuHang2011/counselor-workflow-showcase"
+url: "https://guhang2011.github.io/counselor-workflow-showcase/"
+license: MIT

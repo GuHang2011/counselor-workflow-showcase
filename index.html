@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A sanitized case study of a role-based counselor workflow interface.">
+  <title>Counselor Workflow System · 顾航</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <header class="shell topbar">
+    <a class="brand" href="#top"><span class="brand-mark">cw</span><span><strong>Counselor Workflow</strong><small>精选工程案例 · 顾航</small></span></a>
+    <nav aria-label="页面导航"><a href="#overview">概览</a><a href="#flow">流程</a><a href="#evidence">证据</a><a href="https://github.com/GuHang2011/counselor-workflow-showcase">代码 ↗</a></nav>
+  </header>
+
+  <main id="top">
+    <section id="overview" class="shell hero">
+      <div class="hero-copy">
+        <p class="kicker">CASE STUDY / 01</p>
+        <h1>把复杂事务，整理成可读的工作流。</h1>
+        <p class="lede">一个面向高校辅导员事务的角色化界面样本：用清晰的责任、状态、提醒和知识入口，帮助使用者快速判断“现在要做什么”。</p>
+        <div class="hero-actions"><a class="button primary" href="#flow">查看交互</a><a class="button quiet" href="https://github.com/GuHang2011/counselor-workflow-showcase">阅读代码 ↗</a></div>
+        <p class="boundary"><span></span>精选展示 · 合成内容 · 不含真实业务数据</p>
+      </div>
+      <div class="hero-board" aria-label="工作流状态预览">
+        <div class="board-head"><span>WORK QUEUE</span><b>03 / 12</b></div>
+        <div class="board-line"><i class="dot amber"></i><span>材料收集 · 待审核</span><strong>今天</strong></div>
+        <div class="board-line active"><i class="dot green"></i><span>咨询转介 · 待接收</span><strong>明天</strong></div>
+        <div class="board-line"><i class="dot blue"></i><span>公告确认 · 进行中</span><strong>周五</strong></div>
+        <div class="board-foot"><span>所有变更保留版本和责任人</span><span class="pulse"></span></div>
+      </div>
+    </section>
+
+    <section id="flow" class="shell section">
+      <div class="section-head"><div><p class="kicker">INTERACTION MAP / 02</p><h2>角色不同，阅读重点不同。</h2></div><p>点击角色和模块，查看同一套工作流如何改变信息密度与下一步动作。</p></div>
+      <div class="controls" role="group" aria-label="角色选择"><button class="role active" data-role="counselor">辅导员</button><button class="role" data-role="student">学生</button><button class="role" data-role="admin">管理员</button></div>
+      <div class="flow-grid"><aside class="module-list" aria-label="模块选择"><button class="module active" data-module="tasks"><span>01</span><strong>任务面板</strong><small>责任与截止时间</small></button><button class="module" data-module="requests"><span>02</span><strong>事务请求</strong><small>提交、转介与办结</small></button><button class="module" data-module="knowledge"><span>03</span><strong>制度检索</strong><small>来源与版本</small></button></aside><article class="flow-panel"><div class="panel-meta"><span id="panel-role">COUNSELOR VIEW</span><span id="panel-status">LIVE SAMPLE</span></div><h3 id="panel-title">把今天要做的事排在前面。</h3><p id="panel-copy">以截止时间、责任人和当前状态组织任务，减少在多个页面之间来回查找。</p><div class="flow-steps"><span class="step done">已提交</span><span class="connector"></span><span class="step current">待处理</span><span class="connector"></span><span class="step">已办结</span></div><div class="insight"><b id="insight-value">4</b><span id="insight-label">项待处理任务</span><em>↗</em></div></article></div>
+    </section>
+
+    <section id="evidence" class="band"><div class="shell evidence"><div class="section-head"><div><p class="kicker">EVIDENCE / 03</p><h2>从界面到边界，留下可检查的证据。</h2></div><p>代码片段、架构说明和干净测试截图共同组成阅读路径。</p></div><div class="evidence-grid"><button class="shot" data-image="assets/login-desktop.png" data-alt="Clean desktop login screen"><img src="assets/login-desktop.png" alt="干净测试环境的桌面登录页"><span>桌面登录 · 点击放大</span></button><div class="evidence-copy"><div class="metric"><strong>6</strong><span>状态节点<br>可追踪</span></div><div class="metric"><strong>3</strong><span>角色视角<br>可切换</span></div><div class="metric"><strong>1</strong><span>套清晰<br>责任边界</span></div><a class="text-link" href="docs/architecture.md">阅读架构说明 ↗</a><a class="text-link" href="docs/reading-notes.md">查看自学总结 ↗</a></div></div></div></section>
+  </main>
+
+  <dialog class="lightbox"><button class="close" aria-label="关闭预览">×</button><img alt=""><p></p></dialog>
+  <footer class="shell footer"><span>顾航 · Research / Engineering / Learning</span><a href="https://github.com/GuHang2011">返回 GitHub ↗</a></footer>
+  <script src="app.js"></script>
+</body>
+</html>
