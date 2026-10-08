@@ -14,7 +14,8 @@ This repository is a **portfolio selection**, prepared from a larger local Vue +
 - explicit request states, ownership and handoff semantics;
 - API contract examples that require endpoint-level server deduplication before retrying writes;
 - a flat visual system for dense administrative interfaces;
-- screenshot evidence from a clean test login screen and a responsive layout.
+- screenshot evidence from a clean test login screen and responsive task, dormitory and news layouts;
+- a public-safe view of report generation, file review and account-state design.
 
 It is intentionally small. The production-oriented repository, database, uploads, logs, deployment secrets and internal requirements are not included.
 
@@ -31,6 +32,18 @@ It is intentionally small. The production-oriented repository, database, uploads
 - Task labels, counters and identifiers in the static showcase are synthetic.
 - No real student name, student number, phone number, email address, attachment, database, token, password or private deployment setting is published here.
 - The code is a curated teaching and portfolio sample; it is not a complete deployable copy of the original system.
+
+## Recent interface evidence
+
+These screenshots come from isolated test data and contain no real student records or credentials.
+
+| Screen | Desktop | Mobile |
+| --- | --- | --- |
+| Task dashboard and progress | ![Task dashboard](assets/task-dashboard.png) | — |
+| Dormitory allocation and hygiene | ![Dormitory desktop](assets/dorm-desktop.png) | ![Dormitory mobile](assets/dorm-mobile.png) |
+| AI-assisted news draft layout | — | ![News draft mobile](assets/news-mobile.png) |
+
+The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, and account states with forced initial password changes. The public showcase remains static and deliberately excludes those production credentials and data paths.
 
 ## Run the static showcase locally
 
