@@ -28,3 +28,14 @@ The important design choice is to keep **permission**, **workflow state** and **
 ## Why this matters for a dense admin interface
 
 The interface is not a collection of decorative cards. It is a reading surface for work: current responsibility, next action, evidence and history should be visible in the same rhythm. The online page demonstrates this idea with role tabs and module filters.
+
+## Updated production lessons
+
+The tested application extends this boundary with four rules worth preserving in a connected implementation:
+
+- A report is generated from the records the current actor can already see. The text summary and editable PPT are outputs of the same fact set, with cancelled work excluded from the completion denominator and pending review kept separate.
+- File review is a transaction over a selected set. The server checks every record's owner, version and submitted state before applying a bulk approve or return; a return requires a human comment.
+- AI is an optional drafting aid. Image bytes are sent only after an explicit user choice and only when the deployment has opted into an external model. Local fallback text is labelled as a template and never claims to have analysed an image.
+- Account status, role and administrator level are separate fields. Inactive or expired accounts cannot operate, initial employee-number passwords force a password change, and ordinary administrators cannot edit administrator or system accounts.
+
+The screenshots in `assets/` are evidence of the responsive reading surface, not proof of backend authorization. Reviewers should use the contract examples and architecture boundary above when assessing the design.
