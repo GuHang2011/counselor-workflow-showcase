@@ -40,10 +40,13 @@ These screenshots come from isolated test data and contain no real student recor
 | Screen | Desktop | Mobile |
 | --- | --- | --- |
 | Task dashboard and progress | ![Task dashboard](assets/task-dashboard.png) | — |
+| Counselor dashboard shortcuts | ![Counselor dashboard](assets/dashboard-shortcuts.png) | — |
+| Feature search command palette | ![Feature search](assets/feature-search.png) | — |
+| Smart Engineering Technology College login | ![College login](assets/login-smart-engineering.png) | — |
 | Dormitory allocation and hygiene | ![Dormitory desktop](assets/dorm-desktop.png) | ![Dormitory mobile](assets/dorm-mobile.png) |
 | AI-assisted news draft layout | — | ![News draft mobile](assets/news-mobile.png) |
 
-The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, and account states with forced initial password changes. The public showcase remains static and deliberately excludes those production credentials and data paths.
+The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, account states with forced initial password changes, role-aware shortcuts and function search. The public showcase remains static and deliberately excludes those production credentials and data paths. See [`docs/ui-refresh-20261026.md`](docs/ui-refresh-20261026.md) for the latest interface changes and validation record.
 
 ## Run the static showcase locally
 
@@ -69,12 +72,12 @@ The larger local application uses Vue, TypeScript and Spring Boot. This public r
 
 | Evidence | What to inspect |
 | --- | --- |
-| Online showcase | Role switcher, module selector and screenshot lightbox |
+| Online showcase | Role switcher, module selector, screenshot lightbox and `Ctrl/Cmd + K` feature search |
 | Workflow model | State transitions, owner-only actions, explicit transfer target and version checks in `src/workflow-state.ts` |
 | Retry contract | A stable key plus explicit endpoint deduplication support in `src/api-contract.ts` |
 | Contract checks | Transfer, ownership, conflict and retry failure cases in `tests/contracts.test.mjs` |
 | Architecture note | UI, API, domain and audit boundaries in `docs/architecture.md` |
-| Screenshots | Clean desktop and mobile login states in `assets/` |
+| Screenshots | Login, counselor dashboard, feature search, task, dormitory and news states in `assets/` |
 
 ## Attribution boundary
 

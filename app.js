@@ -35,3 +35,47 @@
   window.addEventListener('scroll', () => { const max = document.documentElement.scrollHeight - innerHeight; progress.style.transform = `scaleX(${max ? scrollY / max : 0})`; }, { passive: true });
   render();
 })();
+
+// Public showcase version of the counselor feature search. The production app
+// uses the same interaction pattern: a keyboard shortcut, role-safe results,
+// and a direct jump to the relevant work area.
+(() => {
+  const dialog = document.querySelector('.feature-search');
+  const input = document.querySelector('#feature-search-input');
+  const results = document.querySelector('#feature-search-results');
+  const trigger = document.querySelector('.search-trigger');
+  if (!dialog || !input || !results || !trigger) return;
+  const features = [
+    { title: '工作台', desc: '先看今天要做什么、任务进度和待办', target: '#overview' },
+    { title: '内部聊天', desc: '与校内联系人沟通，发送文字和文件', target: '#flow' },
+    { title: '学生材料收集', desc: '发起收集、查看提交、审核材料', target: '#evidence' },
+    { title: '宿舍管理', desc: '床位分配、卫生统计和退宿处理', target: '#evidence' },
+    { title: 'AI 写作', desc: '新闻初稿、文字优化和工作总结', target: '#evidence' },
+    { title: '个人设置', desc: '修改密码、提醒时间和页面偏好', target: '#flow' },
+  ];
+  const normalize = value => value.trim().toLocaleLowerCase().replace(/\s+/g, '');
+  function render() {
+    const query = normalize(input.value);
+    const list = features.filter(item => !query || normalize(`${item.title}${item.desc}`).includes(query));
+    results.replaceChildren(...list.map(item => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'feature-result';
+      button.innerHTML = `<strong>${item.title}</strong><span>${item.desc}</span><b>→</b>`;
+      button.addEventListener('click', () => { dialog.close(); document.querySelector(item.target)?.scrollIntoView({ behavior: 'smooth' }); });
+      return button;
+    }));
+    if (!list.length) {
+      const empty = document.createElement('p');
+      empty.className = 'feature-empty';
+      empty.textContent = '没有找到匹配功能，试试“学生”“宿舍”或“AI”。';
+      results.append(empty);
+    }
+  }
+  function open() { dialog.showModal(); input.value = ''; render(); requestAnimationFrame(() => input.focus()); }
+  trigger.addEventListener('click', open);
+  input.addEventListener('input', render);
+  document.addEventListener('keydown', event => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); open(); }
+  });
+})();

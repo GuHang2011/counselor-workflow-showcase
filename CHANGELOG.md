@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added the Smart Engineering Technology College login, counselor dashboard shortcut and feature-search screenshots from the isolated review environment.
+- Added a `Ctrl/Cmd + K` feature search to the static showcase with keyword filtering and direct section navigation.
+- Documented the 2026-10-26 UI refresh, role-aware entry points and validation evidence in `docs/ui-refresh-20261026.md`.
 - Added the role and module switching showcase and standalone workflow state model.
 - Added architecture, API contract, and reading notes.
 - Added actual blank desktop/mobile login screenshots and a public-data boundary statement.
