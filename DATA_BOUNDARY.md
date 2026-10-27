@@ -1,10 +1,9 @@
 # Public data boundary
 
-This repository intentionally excludes:
+This repository excludes real student records, real names/contact details/identifiers, production databases and attachments, logs, caches, credentials, certificates and private deployment configuration.
 
-- Student records, names, phone numbers, emails, identifiers, and case details
-- Production databases, uploaded files, logs, caches, and internal URLs
-- Passwords, tokens, certificates, app IDs, and private configuration
-- Screenshots containing student records, entered credentials, or private institutional information
+The screenshots are captured from the actual local application. Login screens have empty inputs. Workflow screens use generated test accounts (`erp_test_*`) and synthetic tasks; those strings are fixtures, not institutional users. The 2026-10-28 set contains mobile login, desktop/mobile dashboard and mobile search views. General interface branding is retained.
 
-Task examples and counters are synthetic. The two screenshots are actual blank login interfaces from the local application, retaining general interface branding. They are not synthetic pictures or proof of production use. A visual review found no entered accounts, passwords or student records. A future contribution must preserve this boundary and explain its input source before adding data or media.
+`examples/vue-prelaunch/` contains reviewed source extracts, an integration patch and test source. References to session storage, authorization headers and fixture paths describe implementation; no live token, password or fixture file is included. The browser test source requires an isolated instance of the full application and must not be pointed at a production account.
+
+`docs/evidence/prelaunch-20261028.json` is an allowlisted summary of pass counts and build/report hashes. Raw traces, local filesystem paths, request payloads and test-account credentials are excluded. A successful isolated run is not evidence of production deployment, antivirus integration, security clearance or measured user impact.

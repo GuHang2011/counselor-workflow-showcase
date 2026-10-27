@@ -8,6 +8,10 @@ Administrative requests often move through several roles and states. The case st
 
 This public selection focuses on the interaction model, state transitions, API contract, architecture explanation, and responsive presentation. It is not a copy of a production system.
 
+## Latest implementation review
+
+Start with the [2026-10-28 problem/fix table](docs/prelaunch-review-20261028.md), then inspect the [Vue extracts and integration patch](examples/vue-prelaunch/README.md). The 32-case browser result belongs to the full isolated application; the public static demo has its own four contract checks.
+
 ## Evidence path
 
 1. Open the [live demo](https://guhang2011.github.io/counselor-workflow-showcase/).
@@ -18,7 +22,7 @@ This public selection focuses on the interaction model, state transitions, API c
 
 ## Limitations
 
-The task data is synthetic and the interface is a teaching showcase. Screenshots show the local application's actual blank login screens. The sample does not claim production scale, institutional deployment, or measured user impact.
+The task data is synthetic and the interface is a teaching showcase. Screenshots show blank login screens and isolated workflows with synthetic test accounts. The sample does not claim production scale, institutional deployment, or measured user impact.
 
 ## Reproduce locally
 

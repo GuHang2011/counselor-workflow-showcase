@@ -1,0 +1,37 @@
+/* Shared readability and small-screen fixes, following the existing college theme. */
+button:focus-visible, a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.page-actions:empty { display: none; }
+.starting { gap: 16px; padding: 24px; text-align: center; }
+.command-dialog.el-dialog { display: flex; flex-direction: column; max-height: calc(100dvh - 48px); margin-top: 24px; margin-bottom: 24px; }
+.command-dialog .el-dialog__body { min-height: 0; display: flex; flex-direction: column; padding-top: 12px; }
+.command-dialog .el-input, .command-dialog-intro, .command-dialog-foot, .command-result-count { flex-shrink: 0; }
+.command-dialog .command-list { min-height: 0; margin-top: 8px; overflow-y: auto; overscroll-behavior: contain; }
+.command-result-count { margin-top: 10px; color: var(--muted); font-size: 12px; }
+.command-dialog-foot { flex-wrap: wrap; justify-content: space-between; }
+.command-item small { font-size: 12px; }
+
+@media (max-width: 760px) {
+  /* Keep the college identity while bringing the login fields into the first screen. */
+  .login-story { min-height: 0; padding: 20px 24px; }
+  .login-story-copy { margin: 0; padding: 0; }
+  .login-story-copy h1 { font-size: 25px; margin: 14px 0 0; }
+  .login-kicker, .login-story-copy > p, .login-feature-grid, .campus-signature { display: none; }
+  .login-side { padding-top: 16px; }
+  .login-card { padding: 22px; }
+  .login-card-heading h2 { font-size: 22px; }
+  .login-card-icon { flex-shrink: 0; }
+  .topbar { padding-inline: 12px; }
+  .topbar-left { min-width: 0; }
+  .topbar-actions { flex-shrink: 0; gap: 6px; }
+  .breadcrumb { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .global-search-trigger, .notification-button, .mobile-menu { min-width: 40px; min-height: 40px; }
+  .content > .office-container { padding: 12px; }
+  .command-dialog.el-dialog { max-height: calc(100dvh - 24px); margin-top: 12px; margin-bottom: 12px; }
+  .command-dialog .el-dialog__body { padding: 12px 16px 18px; }
+}
+
+@media print {
+  .main-shell { margin: 0 !important; width: 100% !important; }
+  .content { padding: 0 !important; }
+  .page-actions, .content-footer, .nav-overlay { display: none !important; }
+}

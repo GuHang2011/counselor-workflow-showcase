@@ -6,6 +6,17 @@
 
 [Open the online showcase](https://guhang2011.github.io/counselor-workflow-showcase/) · [View the profile](https://github.com/GuHang2011)
 
+## 2026-10-28：上线前优化记录
+
+本轮整理了手机登录、工作台长标题、功能搜索、断网恢复、提醒偏好、AI 异常提示和图标体积优化。
+
+- [逐项修复与验收说明](docs/prelaunch-review-20261028.md)：32 项浏览器回归、15 项 HTTP 检查和部署边界。
+- [实际 Vue 代码摘录与接入补丁](examples/vue-prelaunch/README.md)：组件源码、样式、图标注册和 10 项新增专项测试。
+- [最终脱敏验收摘要](docs/evidence/prelaunch-20261028.json)：前后端产物与浏览器报告的校验值。
+- [在线查看最新截图](https://guhang2011.github.io/counselor-workflow-showcase/#prelaunch)：手机登录、桌面/手机首页及手机搜索。
+
+这些验收针对完整的本地应用；公开仓库仍是静态展示和代码摘录，不能直接部署成业务系统。宝塔 MySQL、生产扫描和 HTTPS 尚需现场验证，旧依赖告警尚未全部解决。
+
 ## What this repository shows
 
 This repository is a **portfolio selection**, prepared from a larger local Vue + Spring Boot application. It shows the parts that are useful for a reviewer to inspect quickly:
@@ -28,7 +39,7 @@ It is intentionally small. The production-oriented repository, database, uploads
 
 ## Scope and privacy
 
-- Screenshots are actual blank login screens from the local application. They show interface branding and empty fields, with no student records or entered credentials.
+- Screenshots show blank login screens or isolated synthetic workflows. Test account names such as `erp_test_*` are generated fixtures; no real student records or entered credentials are included.
 - Task labels, counters and identifiers in the static showcase are synthetic.
 - No real student name, student number, phone number, email address, attachment, database, token, password or private deployment setting is published here.
 - The code is a curated teaching and portfolio sample; it is not a complete deployable copy of the original system.
@@ -46,7 +57,7 @@ These screenshots come from isolated test data and contain no real student recor
 | Dormitory allocation and hygiene | ![Dormitory desktop](assets/dorm-desktop.png) | ![Dormitory mobile](assets/dorm-mobile.png) |
 | AI-assisted news draft layout | — | ![News draft mobile](assets/news-mobile.png) |
 
-The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, account states with forced initial password changes, role-aware shortcuts and function search. The public showcase remains static and deliberately excludes those production credentials and data paths. See [`docs/ui-refresh-20261026.md`](docs/ui-refresh-20261026.md) for the latest interface changes and validation record.
+The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, account states with forced initial password changes, role-aware shortcuts and function search. The public showcase remains static and deliberately excludes those production credentials and data paths. See [`docs/ui-refresh-20261026.md`](docs/ui-refresh-20261026.md) for the previous refresh, and [`docs/prelaunch-review-20261028.md`](docs/prelaunch-review-20261028.md) for the latest fixes and validation record.
 
 ## Run the static showcase locally
 
@@ -58,7 +69,7 @@ python -m http.server 8080 --bind 127.0.0.1
 
 Open <http://127.0.0.1:8080/>. The page uses plain HTML, CSS and JavaScript. No login, database, build step or backend is required. Role and module buttons change example text; they do not enforce authorization or submit real requests.
 
-The two standalone TypeScript files in `src/` are domain/API teaching examples, not a backend or a connected part of the page. Run the contract checks with Node.js 22.18+ (or Node.js 24+):
+The two standalone TypeScript files in root `src/` are domain/API teaching examples, not a backend or a connected part of the page. The new `examples/vue-prelaunch/` contains actual Vue application extracts and integration patches; its browser tests require the full private application and isolated fixtures. Run the contract checks with Node.js 22.18+ (or Node.js 24+):
 
 ```sh
 node --test tests/contracts.test.mjs

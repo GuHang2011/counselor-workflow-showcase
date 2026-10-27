@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "version": "20261028-prelaunch",
+  "packagedAt": "2026-10-27T16:04:22.5862818Z",
+  "acceptanceFinishedAt": "2026-10-27T16:04:09.617315+00:00",
+  "jarSha256": "bf4019c1615833b0e403e9ae096999885ec0bc91d19ec350d2e44e695d482c7b",
+  "frontendSha256": "07b31667a75b8c06805672c7dc17ce84bb419d7b59014f25fcfe72ddb4d323d0",
+  "browserReportSha256": "fc34b3486c4d42f79335b6b0751d8930d0e1dd3b8fb36b8dde09d55972abe2e3",
+  "httpSmoke": "passed",
+  "chatSmoke": "passed",
+  "browser": "passed",
+  "restart": "passed",
+  "browserStats": {
+    "startTime": "2026-10-27T16:02:15.746Z",
+    "duration": 109115.546,
+    "expected": 32,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "scope": "Full local application, isolated H2 database and Edge browser; not the static showcase or a production server.",
+  "checks": {
+    "typecheck": "passed",
+    "apiClientTests": 6,
+    "httpChecks": 15,
+    "packageChecks": 18,
+    "deploymentScriptChecks": 10
+  },
+  "externalAI": "not tested; local fallback and simulated network failures only",
+  "productionMySQL": "not tested",
+  "productionClamAV": "not tested"
+}

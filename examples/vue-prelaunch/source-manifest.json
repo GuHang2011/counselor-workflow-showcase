@@ -1,0 +1,68 @@
+[
+  {
+    "path": "src/components/FeatureSearch.vue",
+    "source": "CropDiseasesDetection_vue/src/components/FeatureSearch.vue",
+    "sha256": "3890bb148ea2917e9ec4ef3c295da3673f1ed8a1efaa1cee79e71d3d2abd71f6",
+    "sourceSha256": "3890bb148ea2917e9ec4ef3c295da3673f1ed8a1efaa1cee79e71d3d2abd71f6"
+  },
+  {
+    "path": "src/components/TaskReminder.vue",
+    "source": "CropDiseasesDetection_vue/src/components/TaskReminder.vue",
+    "sha256": "e153d5fd2cee5392107f515c440afe1692ab578acfbe010432119331954672b5",
+    "sourceSha256": "e153d5fd2cee5392107f515c440afe1692ab578acfbe010432119331954672b5"
+  },
+  {
+    "path": "src/components/AiWorkbench.vue",
+    "source": "CropDiseasesDetection_vue/src/components/AiWorkbench.vue",
+    "sha256": "38ad67b022ea7ecd69c151217858f3c1b4da91c8fc57cc563f69f14ae0c8f069",
+    "sourceSha256": "38ad67b022ea7ecd69c151217858f3c1b4da91c8fc57cc563f69f14ae0c8f069"
+  },
+  {
+    "path": "src/icons.ts",
+    "source": "CropDiseasesDetection_vue/src/icons.ts",
+    "sha256": "02aec23b90ba113a09d0d40a93078279e1d3c2991d01aa820117855eabf42b58",
+    "sourceSha256": "02aec23b90ba113a09d0d40a93078279e1d3c2991d01aa820117855eabf42b58"
+  },
+  {
+    "path": "src/prelaunch.css",
+    "source": "CropDiseasesDetection_vue/src/prelaunch.css",
+    "sha256": "7fd18a8beb802ab5942403ab9b04f27250f88d460901a09c1733fc4e4ce3fc09",
+    "sourceSha256": "7fd18a8beb802ab5942403ab9b04f27250f88d460901a09c1733fc4e4ce3fc09"
+  },
+  {
+    "path": "src/api.ts",
+    "source": "CropDiseasesDetection_vue/src/api.ts",
+    "sha256": "43b2cbd7235baf631e9ef334d35405433e60eb88d6b512f5a28fb9e621f6f11c",
+    "sourceSha256": "43b2cbd7235baf631e9ef334d35405433e60eb88d6b512f5a28fb9e621f6f11c"
+  },
+  {
+    "path": "shared/api-client.ts",
+    "source": "CropDiseasesDetection_vue/shared/api-client.ts",
+    "sha256": "5c95096ddd03c2e2894cfbb1ab090aee156668e937456db09ac21d9bf2c69e46",
+    "sourceSha256": "5c95096ddd03c2e2894cfbb1ab090aee156668e937456db09ac21d9bf2c69e46"
+  },
+  {
+    "path": "shared/contracts.ts",
+    "source": "CropDiseasesDetection_vue/shared/contracts.ts",
+    "sha256": "77a8d2837ca494efe798a9d9be6af05143368fb0574473738a046ccb037ec701",
+    "sourceSha256": "77a8d2837ca494efe798a9d9be6af05143368fb0574473738a046ccb037ec701"
+  },
+  {
+    "path": "shared/domain.ts",
+    "source": "CropDiseasesDetection_vue/shared/domain.ts",
+    "sha256": "45cb6760cedf1ea77f6bc65c58ef0fd4a7b3f479010332cba9e655dad5eb1aa0",
+    "sourceSha256": "45cb6760cedf1ea77f6bc65c58ef0fd4a7b3f479010332cba9e655dad5eb1aa0"
+  },
+  {
+    "path": "public/favicon.svg",
+    "source": "CropDiseasesDetection_vue/public/favicon.svg",
+    "sha256": "fc200e589e45e55e768a11d9707440ad172b9f6e5a78f9323cd101a84fc50c50",
+    "sourceSha256": "fc200e589e45e55e768a11d9707440ad172b9f6e5a78f9323cd101a84fc50c50"
+  },
+  {
+    "path": "tests/browser/prelaunch.spec.ts",
+    "source": "CropDiseasesDetection_vue/tests/browser/prelaunch.spec.ts",
+    "sha256": "1a75540c2a7956e7e8c2accdf4fbcf35a24f194052b21ce53bd62adb702e8ef7",
+    "sourceSha256": "1a75540c2a7956e7e8c2accdf4fbcf35a24f194052b21ce53bd62adb702e8ef7"
+  }
+]

@@ -1,0 +1,212 @@
+--- a/src/App.vue
++++ b/src/App.vue
+@@ -6,6 +6,7 @@
+ import WorkDashboard from '@/components/WorkDashboard.vue';
+ import UserAvatar from '@/components/UserAvatar.vue';
+ import CampusScene from '@/components/CampusScene.vue';
++import FeatureSearch from '@/components/FeatureSearch.vue';
+ import { api, getToken, setToken } from './api';
+ 
+ // Business pages load when opened, keeping the login and dashboard lightweight.
+@@ -37,6 +38,8 @@
+ type User = Item & { id: string; name: string; role: string; className: string };
+ const user = ref<User | null>(null);
+ const starting = ref(true);
++const startupError = ref('');
++const reconnecting = ref(false);
+ const loading = ref(false);
+ const saving = ref(false);
+ const error = ref('');
+@@ -69,7 +72,6 @@
+ const chatRefresh = ref(0);
+ const menuSearch = ref('');
+ const commandOpen = ref(false);
+-const commandSearch = ref('');
+ const moreBusinessOpen = ref(false), dashboardRefresh = ref(0), initialRecordId = ref(''), initialRecordTarget = ref('');
+ const identityKey = computed(() => user.value ? user.value.id + ':' + (user.value.activeRoleId || 'primary') : 'guest');
+ const loginForm = reactive({ username: '', password: '' });
+@@ -150,18 +152,9 @@
+ 	const normalize = (value: string) => value.toLocaleLowerCase().replace(/\s+/g, '');
+ 	return normalize(item.title + item.desc + (menuAliases[item.id] || '')).includes(normalize(menuSearch.value));
+ }
+-const commandResults = computed(() => {
+-	const query = commandSearch.value.trim().toLocaleLowerCase().replace(/\s+/g, '');
+-	return menu.value.filter(item => {
+-		if (!query) return true;
+-		return (item.title + item.desc + (menuAliases[item.id] || '')).toLocaleLowerCase().replace(/\s+/g, '').includes(query);
+-	}).slice(0, 12);
+-});
+ function openCommandPalette() {
+ 	if (!user.value || user.value.mustChangePassword || user.value.roleRestricted) return;
+-	commandSearch.value = '';
+ 	commandOpen.value = true;
+-	nextTick(() => document.getElementById('command-search')?.focus());
+ }
+ function chooseCommand(id: string) {
+ 	commandOpen.value = false;
+@@ -173,6 +166,9 @@
+ 		openCommandPalette();
+ 	} else if (event.key === 'Escape' && commandOpen.value) {
+ 		commandOpen.value = false;
++	} else if (event.key === 'Escape' && menuOpen.value) {
++		menuOpen.value = false;
++		nextTick(() => document.querySelector<HTMLButtonElement>('.mobile-menu')?.focus());
+ 	}
+ }
+ const menuGroups = computed(() => {
+@@ -371,7 +367,7 @@
+ 	chatBusy.value = false;
+ 	menuSearch.value = '';
+ 	commandOpen.value = false;
+-	commandSearch.value = '';
++	startupError.value = '';
+ 	moreBusinessOpen.value = false;
+ 	initialRecordId.value = '';
+ 	personalScope.value = 'mine';
+@@ -389,6 +385,7 @@
+ 	error.value = '登录已过期，请重新登录。';
+ }
+ async function signIn() {
++	if (saving.value) return;
+ 	if (!loginForm.username.trim() || !loginForm.password) return ElMessage.warning('请填写账号和密码。');
+ 	saving.value = true;
+ 	error.value = '';
+@@ -707,25 +704,31 @@
+ 	finally { chatPolling = false; }
+ }
+ async function resumeSession() { if (!user.value || document.hidden || saving.value) return; const token=getToken(); try { const currentUser = await api('/auth/me'); if(getToken()!==token)return; user.value = currentUser; applyTheme(currentUser.theme); if (!dialog.value) await loadData(); } catch (e: any) { if(getToken()===token)error.value = e.message; } }
++async function startSession() {
++	if (reconnecting.value) return;
++	reconnecting.value = true;
++	startupError.value = '';
++	try {
++		if (getToken()) {
++			user.value = await api('/auth/me');
++			applyTheme(user.value!.theme);
++			passwordOpen.value = !!user.value!.mustChangePassword;
++			if (page.value === 'users' && isAdmin.value) navigate('governance');
++			else if (!menu.value.some(m => m.id === page.value)) navigate(user.value!.roleRestricted ? 'erp' : 'dashboard');
++			starting.value = false;
++			await loadData();
++		} else starting.value = false;
++	} catch (e: any) {
++		if (getToken()) startupError.value = '暂时无法连接服务，请检查网络后重试。';
++		else { error.value = e.message; starting.value = false; }
++	} finally { reconnecting.value = false; }
++}
+ onMounted(async () => {
+ 	window.addEventListener('session-expired', expired);
+ 	window.addEventListener('hashchange', onHash);
+ 	window.addEventListener('keydown', handleGlobalKey);
+ 	document.addEventListener('visibilitychange', resumeSession);
+-	if (getToken()) {
+-		try {
+-			user.value = await api('/auth/me');
+-			applyTheme(user.value!.theme);
+-			passwordOpen.value = !!user.value!.mustChangePassword;
+-			if (page.value === 'users' && isAdmin.value) navigate('governance');
+-			else if (!menu.value.some((m) => m.id === page.value)) navigate(user.value!.roleRestricted ? 'erp' : 'dashboard');
+-			await loadData();
+-		} catch (e: any) {
+-			clearSession();
+-			error.value = e.message;
+-		}
+-	}
+-	starting.value = false;
++	await startSession();
+ 	chatTimer = setInterval(refreshChatUnread, 10000);
+ 	refreshTimer = setInterval(() => {
+ 		today.value = new Date();
+@@ -752,7 +755,8 @@
+ <template>
+ 	<div v-if="starting" class="starting">
+ 		<span class="brand-mark">学</span>
+-		<p>正在打开工作台…</p>
++		<p role="status">{{ startupError || '正在打开工作台…' }}</p>
++		<div v-if="startupError"><el-button type="primary" :loading="reconnecting" @click="startSession">重新连接</el-button><el-button @click="clearSession(); starting = false">返回登录</el-button></div>
+ 	</div>
+ 	<main v-else-if="!user" class="login-page">
+ 		<section class="login-story">
+@@ -808,7 +812,7 @@
+ 	</main>
+ 	<div v-else class="workspace">
+ 		<div v-if="menuOpen" class="nav-overlay" @click="menuOpen = false"></div>
+-		<aside class="sidebar" :class="{ 'is-open': menuOpen }">
++		<aside id="main-navigation" class="sidebar" :class="{ 'is-open': menuOpen }">
+ 			<a class="brand" href="#dashboard" @click.prevent="navigate('dashboard')"
+ 				><span class="brand-mark">学</span>
+ 				<div><strong><span>智能工程技术学院</span><span>辅导员系统</span></strong><small>COUNSELOR SYSTEM</small></div></a
+@@ -847,7 +851,7 @@
+ 		<div class="main-shell">
+ 			<header class="topbar">
+ 				<div class="topbar-left">
+-					<button class="icon-button mobile-menu" aria-label="打开导航" @click="menuOpen = !menuOpen">
++					<button class="icon-button mobile-menu" :aria-label="menuOpen ? '关闭导航' : '打开导航'" aria-controls="main-navigation" :aria-expanded="menuOpen" @click="menuOpen = !menuOpen">
+ 						<el-icon><Menu /></el-icon></button
+ 					><span class="breadcrumb"
+ 						>{{ navTitle }} <span>/</span> <b>{{ current.title }}</b></span
+@@ -1176,15 +1180,7 @@
+ 		</div>
+ 	</div>
+ 
+-	<el-dialog v-model="commandOpen" title="查找功能" width="min(92vw, 560px)" class="command-dialog" :show-close="true" @closed="commandSearch = ''">
+-		<div class="command-dialog-intro">输入“查学生”“收材料”“改密码”等关键词，快速打开对应功能。</div>
+-		<el-input id="command-search" v-model="commandSearch" clearable placeholder="搜索功能名称或用途" size="large" autocomplete="off"><template #prefix><el-icon><Search /></el-icon></template></el-input>
+-		<div class="command-list" role="listbox" aria-label="功能搜索结果">
+-			<button v-for="item in commandResults" :key="item.id" class="command-item" role="option" @click="chooseCommand(item.id)"><span class="command-item-icon"><el-icon><component :is="item.icon" /></el-icon></span><span><strong>{{ item.title }}</strong><small>{{ item.desc }}</small></span><el-icon class="command-arrow"><ArrowRight /></el-icon></button>
+-			<div v-if="!commandResults.length" class="command-empty">没有找到相关功能，可以试试“任务”“学生”“材料”或“设置”。</div>
+-		</div>
+-		<div class="command-dialog-foot"><span>Ctrl / Cmd + K 打开</span><span>Esc 关闭</span></div>
+-	</el-dialog>
++	<FeatureSearch v-model="commandOpen" :entries="menu" :aliases="menuAliases" @choose="chooseCommand" />
+ 
+ 	<el-dialog
+ 		v-model="passwordOpen"
+--- a/src/components/WorkDashboard.vue
++++ b/src/components/WorkDashboard.vue
+@@ -147,7 +147,7 @@
+       <span class="quick-actions-hint">也可以按 <kbd>Ctrl K</kbd> 查找全部功能</span>
+     </div>
+     <div class="quick-actions" aria-label="常用业务">
+-      <button v-for="(item, index) in shortcuts" :key="item.route" class="quick-action-card" @click="emit('navigate', item.route)"><span class="quick-action-icon"><el-icon><component :is="item.icon" /></el-icon></span><span class="quick-action-copy"><strong>{{ item.title }}</strong><small>{{ index === 0 ? '现在就去办理' : '打开工作页面' }}</small></span><el-icon class="quick-action-arrow"><ArrowRight /></el-icon></button>
++      <button v-for="item in shortcuts" :key="item.route" class="quick-action-card" :aria-label="item.title" @click="emit('navigate', item.route)"><span class="quick-action-icon" aria-hidden="true"><el-icon><component :is="item.icon" /></el-icon></span><span class="quick-action-copy"><strong>{{ item.title }}</strong><small aria-hidden="true">打开工作页面</small></span><el-icon class="quick-action-arrow" aria-hidden="true"><ArrowRight /></el-icon></button>
+     </div>
+     <el-alert v-for="message in errors" :key="message" :title="message" type="warning" :closable="false" show-icon />
+     <div v-if="errors.length" class="load-retry"><span>已加载的事项仍可办理，未加载部分请重试。</span><el-button :loading="loading" @click="load">重新加载</el-button></div>
+@@ -179,8 +179,9 @@
+ </template>
+ 
+ <style scoped>
+-.queue-switch{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:24px;border:1px solid #e5ebf2;border-radius:14px;background:#fff;overflow:hidden}.queue-switch button{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;padding:13px 14px;border:0;border-right:1px solid #edf1f5;background:transparent;color:#697684;font-size:12px;text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease}.queue-switch button:last-child{border-right:0}.queue-switch button:hover{background:#f7faff;color:#205ad3}.queue-switch button.active{background:#f1f6ff;color:#205ad3;box-shadow:inset 0 -2px 0 #205ad3}.queue-switch button span{display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}.queue-switch button strong{color:#27313e;font-size:20px;line-height:1;font-weight:700}.queue-switch button.red strong,.queue-switch button.red.active{color:#c43d4b}.queue-switch button.amber strong,.queue-switch button.amber.active{color:#b97912}.queue-switch button.green strong,.queue-switch button.green.active{color:#168468}.todo-section,.progress-section{padding:24px;border:1px solid #e5ebf2;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(31,68,108,.04)}.todo-section header,.progress-section header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}.todo-section header h2,.progress-section header h2{margin:0;font-size:18px;line-height:1.4}.todo-section header>span,.progress-section header>span{color:#8793a2;font-size:12px}.todo-section header .el-button,.progress-section header .el-button{margin-left:auto}.todo-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}.todo-list li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:20px;padding:15px 16px;border:1px solid #edf1f5;border-radius:12px;background:#fbfcfe;transition:border-color .2s ease,box-shadow .2s ease}.todo-list li:hover{border-color:#cbdcf7;box-shadow:0 6px 16px rgba(32,90,211,.07)}.todo-main{min-width:0}.todo-meta{display:flex;gap:8px;margin-bottom:4px;color:#8793a2;font-size:11px}.todo-meta span+span::before{content:'·';margin-right:8px}.todo-main h3{margin:0;overflow:hidden;color:#27313e;font-size:14px;font-weight:600;text-overflow:ellipsis;white-space:nowrap}.todo-deadline{display:flex;align-items:flex-end;gap:6px;min-width:142px;color:#7a8796;font-size:11px}.todo-deadline time{font-variant-numeric:tabular-nums;white-space:nowrap}.progress-section{margin-top:22px}.progress-content{display:grid;grid-template-columns:170px minmax(0,1fr);gap:28px;align-items:start}.rate{display:flex;align-items:center;flex-direction:column;gap:8px;color:#697684;font-size:12px}.people{display:grid;gap:14px;max-height:230px;overflow:auto;padding-right:4px}.person>div:first-child{display:flex;justify-content:space-between;gap:12px;margin-bottom:6px;color:#27313e;font-size:12px}.person>div:first-child span{color:#8793a2;font-size:11px}.person em{color:#c43d4b;font-style:normal}.person .el-progress{width:100%}.no-tasks{margin:12px 0;color:#8793a2;font-size:13px}
++.queue-switch{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:24px;border:1px solid #e5ebf2;border-radius:14px;background:#fff;overflow:hidden}.queue-switch button{display:flex;align-items:flex-start;flex-direction:column;justify-content:space-between;gap:10px;min-width:0;padding:16px 14px;border:0;border-right:1px solid #edf1f5;background:transparent;color:#697684;font-size:12px;text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease}.queue-switch button:last-child{border-right:0}.queue-switch button:hover{background:#f7faff;color:#205ad3}.queue-switch button.active{background:#f1f6ff;color:#205ad3;box-shadow:inset 0 -2px 0 #205ad3}.queue-switch button span{display:flex;align-items:center;gap:6px;min-width:0;white-space:normal}.queue-switch button strong{color:#27313e;font-size:20px;line-height:1;font-weight:700}.queue-switch button.red strong,.queue-switch button.red.active{color:#c43d4b}.queue-switch button.amber strong,.queue-switch button.amber.active{color:#b97912}.queue-switch button.green strong,.queue-switch button.green.active{color:#168468}.todo-section,.progress-section{padding:24px;border:1px solid #e5ebf2;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(31,68,108,.04)}.todo-section header,.progress-section header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}.todo-section header h2,.progress-section header h2{margin:0;font-size:18px;line-height:1.4}.todo-section header>span,.progress-section header>span{color:#8793a2;font-size:12px}.todo-section header .el-button,.progress-section header .el-button{margin-left:auto}.todo-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}.todo-list li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:20px;padding:15px 16px;border:1px solid #edf1f5;border-radius:12px;background:#fbfcfe;transition:border-color .2s ease,box-shadow .2s ease}.todo-list li:hover{border-color:#cbdcf7;box-shadow:0 6px 16px rgba(32,90,211,.07)}.todo-main{min-width:0}.todo-meta{display:flex;gap:8px;margin-bottom:4px;color:#8793a2;font-size:11px}.todo-meta span+span::before{content:'·';margin-right:8px}.todo-main h3{margin:0;overflow-wrap:anywhere;color:#27313e;font-size:14px;font-weight:600;line-height:1.6}.todo-deadline{display:flex;align-items:flex-end;gap:6px;min-width:142px;color:#7a8796;font-size:11px}.todo-deadline time{font-variant-numeric:tabular-nums;white-space:nowrap}.progress-section{margin-top:22px}.progress-content{display:grid;grid-template-columns:170px minmax(0,1fr);gap:28px;align-items:start}.rate{display:flex;align-items:center;flex-direction:column;gap:8px;color:#697684;font-size:12px}.people{display:grid;gap:14px;max-height:230px;overflow:auto;padding-right:4px}.person>div:first-child{display:flex;justify-content:space-between;gap:12px;margin-bottom:6px;color:#27313e;font-size:12px}.person>div:first-child span{color:#8793a2;font-size:11px}.person em{color:#c43d4b;font-style:normal}.person .el-progress{width:100%}.no-tasks{margin:12px 0;color:#8793a2;font-size:13px}
+ .load-retry,.todo-more{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#697684;margin:12px 0 20px}.todo-search{display:flex;align-items:center;gap:8px;margin-bottom:8px}.todo-search .el-input{width:100%;max-width:440px;min-width:0}.todo-search>.el-button{flex-shrink:0;margin:0}.todo-more{justify-content:center;margin:16px 0}.todo-deadline time{font-variant-numeric:tabular-nums}
+ .scheduled-tasks{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;font-size:13px;color:#697684}
+-.work-dashboard{min-width:0;color:var(--el-text-color-primary)}.quick-actions-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:11px}.quick-actions-head h2{margin-top:4px;font-size:18px;line-height:1.4}.quick-actions-kicker{color:var(--el-color-primary);font-size:11px;font-weight:700;letter-spacing:1.4px}.quick-actions-hint{color:#7c8998;font-size:12px}.quick-actions-hint kbd{padding:2px 5px;border:1px solid #dfe5ec;border-radius:4px;background:#f6f8fb;font-family:inherit;font-size:10px}.quick-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:27px}.quick-action-card{min-width:0;display:flex;align-items:center;gap:10px;padding:13px 12px;border:1px solid #e5ebf2;border-radius:14px;background:linear-gradient(145deg,#fff,#f8fbff);color:#27313e;text-align:left;box-shadow:0 8px 18px rgba(31,68,108,.05);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}.quick-action-card:hover{transform:translateY(-4px);border-color:rgba(var(--brand-rgb),.35);box-shadow:0 13px 24px rgba(var(--brand-rgb),.12)}.quick-action-icon{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:11px;color:var(--el-color-primary);background:var(--brand-soft)}.quick-action-copy{min-width:0;flex:1}.quick-action-copy strong,.quick-action-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.quick-action-copy strong{font-size:13px}.quick-action-copy small{margin-top:3px;color:#8390a0;font-size:10px}.quick-action-arrow{color:#9ba8b7;font-size:14px}@media(max-width:1100px){.quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.todo-list li{gap:12px}.todo-deadline{align-items:flex-end;flex-direction:column}}@media(max-width:700px){.quick-actions-head{align-items:flex-start;flex-direction:column;gap:5px}.quick-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.quick-action-card{padding:11px 9px}.quick-action-copy strong{font-size:12px}.quick-action-copy small{font-size:9px}.queue-switch{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}.queue-switch button{padding:12px}.queue-switch strong{font-size:23px}.queue-switch button:last-child{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}.queue-switch button:last-child strong{margin:0}.todo-list li{grid-template-columns:minmax(0,1fr) 110px;gap:12px}.todo-main{grid-column:1/-1}.todo-deadline{align-items:flex-start;gap:4px}.todo-list .el-button{width:110px}.progress-content{grid-template-columns:1fr}.person>div:first-child{flex-wrap:wrap}.people{max-height:none}.work-dashboard header>span{flex-basis:100%;order:3}}
++.work-dashboard{min-width:0;color:var(--el-text-color-primary)}.quick-actions-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:11px}.quick-actions-head h2{margin-top:4px;font-size:18px;line-height:1.4}.quick-actions-kicker{color:var(--el-color-primary);font-size:11px;font-weight:700;letter-spacing:1.4px}.quick-actions-hint{color:#7c8998;font-size:12px}.quick-actions-hint kbd{padding:2px 5px;border:1px solid #dfe5ec;border-radius:4px;background:#f6f8fb;font-family:inherit;font-size:10px}.quick-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:27px}.quick-action-card{min-width:0;display:flex;align-items:center;gap:10px;padding:13px 12px;border:1px solid #e5ebf2;border-radius:14px;background:linear-gradient(145deg,#fff,#f8fbff);color:#27313e;text-align:left;box-shadow:0 8px 18px rgba(31,68,108,.05);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}.quick-action-card:hover{transform:translateY(-4px);border-color:rgba(var(--brand-rgb),.35);box-shadow:0 13px 24px rgba(var(--brand-rgb),.12)}.quick-action-icon{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:11px;color:var(--el-color-primary);background:var(--brand-soft)}.quick-action-copy{min-width:0;flex:1}.quick-action-copy strong,.quick-action-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.quick-action-copy strong{font-size:14px;white-space:normal;overflow-wrap:anywhere;line-height:1.5}.quick-action-copy small{margin-top:3px;color:#8390a0;font-size:10px}.quick-action-arrow{color:#9ba8b7;font-size:14px}@media(max-width:1100px){.quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.todo-list li{gap:12px}.todo-deadline{align-items:flex-end;flex-direction:column}}@media(max-width:700px){.todo-section,.progress-section{padding:14px}.quick-action-arrow{display:none}.queue-switch button{min-height:74px}.todo-list li{padding:12px}.todo-list .el-button{min-height:40px}.progress-section header h2{font-size:16px}.quick-actions-head{align-items:flex-start;flex-direction:column;gap:5px}.quick-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.quick-action-card{padding:11px 9px}.quick-action-copy strong{font-size:13px}.quick-action-copy small{font-size:9px}.queue-switch{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}.queue-switch button{padding:12px}.queue-switch strong{font-size:23px}.queue-switch button:last-child{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}.queue-switch button:last-child strong{margin:0}.todo-list li{grid-template-columns:minmax(0,1fr) 110px;gap:12px}.todo-main{grid-column:1/-1}.todo-deadline{align-items:flex-start;gap:4px;min-width:0}.todo-list .el-button{width:110px}.progress-content{grid-template-columns:1fr}.person>div:first-child{flex-wrap:wrap}.people{max-height:none}.work-dashboard header>span{flex-basis:100%;order:3}}
++@media print{.quick-actions-head,.quick-actions,.queue-switch,.todo-search,.load-retry,.todo-more,.el-button{display:none!important}.todo-section,.progress-section{padding:12px 0;border:0;box-shadow:none}.todo-list li{break-inside:avoid;grid-template-columns:minmax(0,1fr) auto}.people{max-height:none;overflow:visible}.todo-main h3{white-space:normal}}
+ </style>
+--- a/src/main.ts
++++ b/src/main.ts
+@@ -1,9 +1,10 @@
+ import { createApp } from 'vue';
+ import ElementPlus from 'element-plus';
+ import zhCn from 'element-plus/es/locale/lang/zh-cn';
+-import * as icons from '@element-plus/icons-vue';
++import { icons } from './icons';
+ import 'element-plus/dist/index.css';
+ import './style.css';
++import './prelaunch.css';
+ import App from './App.vue';
+ const app = createApp(App);
+ for (const [name, component] of Object.entries(icons)) app.component(name, component);
+--- a/src/style.css
++++ b/src/style.css
+@@ -1823,7 +1823,7 @@
+ .command-dialog-intro { margin: -4px 0 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+ .command-list { max-height: 390px; overflow: auto; margin-top: 12px; border-top: 1px solid var(--line); }
+ .command-item { width: 100%; display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; gap: 11px; align-items: center; padding: 12px 6px; border: 0; border-bottom: 1px solid var(--line); color: var(--ink); background: transparent; text-align: left; }
+-.command-item:hover { background: var(--brand-soft); }
++.command-item:hover, .command-item.is-selected { background: var(--brand-soft); }
+ .command-item-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--brand); background: var(--brand-soft); }
+ .command-item strong, .command-item small { display: block; }
+ .command-item strong { font-size: 14px; line-height: 1.5; }
