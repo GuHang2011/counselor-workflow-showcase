@@ -10,3 +10,10 @@ coverage/
 *.tmp
 Thumbs.db
 .DS_Store
+
+__pycache__/
+*.pyc
+*.mv.db
+*.trace.db
+*.pem
+*.key

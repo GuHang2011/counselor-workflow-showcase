@@ -1,0 +1,31 @@
+{
+	"name": "counselor-erp-workspace",
+	"version": "1.0.0",
+	"private": true,
+	"description": "智能工程技术学院辅导员学工工作台：辅导员日常办公与学生事务协同",
+	"license": "MIT",
+	"scripts": {
+		"dev": "vite",
+		"typecheck": "vue-tsc --noEmit",
+		"build": "vite build",
+		"preview": "vite preview --host 0.0.0.0"
+	},
+	"dependencies": {
+		"@element-plus/icons-vue": "2.3.1",
+		"element-plus": "2.2.26",
+		"pptxgenjs": "^3.12.0",
+		"vue": "3.5.44"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.56.1",
+		"@types/node": "18.11.13",
+		"@vitejs/plugin-vue": "4.0.0",
+		"typescript": "4.9.4",
+		"vite": "4.0.0",
+		"vue-tsc": "^1.8.27"
+	},
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": ">=8.0.0"
+	}
+}

@@ -1,0 +1,150 @@
+[
+  {
+    "path": "CropDiseasesDetection_springboot/pom.xml",
+    "sha256": "74360b3a06bc0d90b1a88efe658e63cd87fb38fc50007bedfe96ec916e8ad65a"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/AiAssistantController.java",
+    "sha256": "fc94da9e770fc0f147879044fa9a0ec48ff4457f26090901a517cb6582e6726c"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/AiAssistantService.java",
+    "sha256": "a35a7238efbfe2af28682dedc977550bf0637b8c7d8d5c2a0c9d6335d48faccc"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/AiModelConfiguration.java",
+    "sha256": "f5692f09f6fc63af0ce69753412116a7efb76d40eae209f58c5c452110970620"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/AuthService.java",
+    "sha256": "92dc45162ffc9ad7cc26b2300f4bf0afd66575d82d9c9d0d15f32e8c94f218ab"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/main/resources/application.properties",
+    "sha256": "8f9284ea28a088f8107d837f706e5859ed972235bd1b8f1c4915086d4b7561c4"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/test/java/com/example/Kcsj/AiAssistantContractTests.java",
+    "sha256": "02146defe512afa83c28781e165728450a2c88d7641f7ed3d2ce34a85cb2b9f9"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/test/java/com/example/Kcsj/erp/AiConfigurationSecurityTests.java",
+    "sha256": "061e812c6b914de957cf202a0fbdec42da8fe4aab42170c4c800b82d6fdd598f"
+  },
+  {
+    "path": "CropDiseasesDetection_springboot/src/test/java/com/example/Kcsj/erp/LoginProtectionTests.java",
+    "sha256": "e8ee224fbe8dee9fc509840fbfe634a7bd302a10dab586111832c7710460c475"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/mobile/src/pages/index/index.vue",
+    "sha256": "268f3b0850b1a94cf2537312a8ac2d81c907cd9cb75793f6667e27c2cae6a13f"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/package-lock.json",
+    "sha256": "0266cd7071c0a98144bdb0fd48fc70ee6785ca02099db63378fadf76a64dc26b"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/package.json",
+    "sha256": "0f3dfe10880e245901048b4c7a08b19f33ebc4f236e2faca6c1d20c96998a056"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/shared/api-client.ts",
+    "sha256": "d12167a98510d11acbbbbe0c0d476fd16f3f7626a6e7948d4e6ff1b834a12327"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/shared/contracts.ts",
+    "sha256": "77a8d2837ca494efe798a9d9be6af05143368fb0574473738a046ccb037ec701"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/shared/csv.ts",
+    "sha256": "79ceb8510b2fec8199d6d697a20f1ab4230c30c22e7f96d7088848acbb6617e6"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/shared/domain.ts",
+    "sha256": "45cb6760cedf1ea77f6bc65c58ef0fd4a7b3f479010332cba9e655dad5eb1aa0"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/App.vue",
+    "sha256": "5baf737675a8719c6ad1095877348279e683bb5d6da411627b8fe91bba725dbc"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/api.ts",
+    "sha256": "330f8e4fd5325eeb90f6fa7021665f2ceb479857c07f0d118b027d74d2d3f052"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/AiWorkbench.vue",
+    "sha256": "6a9c7907e9f79734232f90ebf389aae9c359371491b8e607304ae38406e5900e"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/CollectionDesk.vue",
+    "sha256": "42fc20e318838d74b179e41176541bb6f05b5e7c4b9831d83f7fbc694e8b9a1d"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/CollegeWork.vue",
+    "sha256": "db2b3ace9b521e5b4907d6dd510fef8e84c7975361bd464d24b88aeccb95fa73"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/EngineeringIllustration.vue",
+    "sha256": "68f62ac641995c4e690e67fe6dc8a938f10e78e74d89db50ddc5b751411f9261"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/ErpOperations.vue",
+    "sha256": "108027a94acd2595d1329d9e141e27cde26f5e5daec148c710e5968144b46485"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/MaterialUpload.vue",
+    "sha256": "c35a5e3e1317121fd03151805ede3e83c3b29263476005eccb2e89c451be72e6"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/OfficeExtensions.vue",
+    "sha256": "8c96beb15d169550809ffd98e1fdc0f2dff0426863d45de8ca4580b689795cb8"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/StudentRegistry.vue",
+    "sha256": "78d973e33255fa3d5374f5ae4817bfd8393650eb225f926e5b349b7e3cc4ca0e"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/components/WorkDashboard.vue",
+    "sha256": "354becc0caf26a0988ea2670ea19c236d4c26b519e6847455e836da74739ef7e"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/main.ts",
+    "sha256": "ab2b5f75804b8f32334ac075f3425f759f4b8569c9a525ba85c6915b6c36e02b"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/src/workspace.css",
+    "sha256": "debbaf3d33b0aedbe70c85adc269a023d8c9a0d7556d21a19e31f846c24e7627"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/tests/api-client.test.cjs",
+    "sha256": "cd883ae9be8157c783b798911763377577ff3f189850ee1ed6ce435759144165"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/tests/csv.test.cjs",
+    "sha256": "ff65e80076d99003dabf4875ee208103e25c42fe58f9a1bb888abbdb25dd911a"
+  },
+  {
+    "path": "CropDiseasesDetection_vue/vite.config.ts",
+    "sha256": "15ecb2f7a675090dceac2ad7708efea66926cf9aef4ae7639cb78b3e6c779375"
+  },
+  {
+    "path": "deploy/linux/baota-site-location.conf.example",
+    "sha256": "b00a815930fcb26829835074ec65e4f45f817621b7fc5fba9e8038c94d1336ba"
+  },
+  {
+    "path": "deploy/linux/nginx.conf.example",
+    "sha256": "3182f5a4653daa775058b9fda7ea79d19fdf56e2ccd87ed2c25b16b7a53bffb7"
+  },
+  {
+    "path": "deploy/package-release.ps1",
+    "sha256": "0c9ee2e2c00a43d839f94b3a460c79c5a706563d56fd4880428d75fedb74454b"
+  },
+  {
+    "path": "deploy/package-version.ps1",
+    "sha256": "9ab753de64111caf7618c16fe59d4725c49e9146ba2cba759e7977bea82ea93e"
+  },
+  {
+    "path": "tests/package_release.ps1",
+    "sha256": "3fd804f60a72596fcc641e47f14c701fd558317fd18bb6c8247fbec44f19f328"
+  }
+]

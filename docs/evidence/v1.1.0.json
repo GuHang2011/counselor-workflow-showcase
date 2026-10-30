@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "version": "v1.1.0",
+  "packagedAt": "2026-10-30T15:45:53.2985905Z",
+  "acceptanceFinishedAt": "2026-10-30T14:37:09.755339+00:00",
+  "jarSha256": "ed67320e19162b72c7a0854b5ea570c27c6f19bd0e5d421a07e4db2aa98a51af",
+  "frontendSha256": "1d5213270c8f1496b0dae9d92ff211ea3f19558abebe105b647ffd6cb9483d97",
+  "browserReportSha256": "55fdc6cb27cd8a471f2dc6b3316d11bbbac7f592fa0a33deb7857f72fe811773",
+  "httpSmoke": "passed",
+  "chatSmoke": "passed",
+  "browser": "passed",
+  "restart": "passed",
+  "browserStats": {
+    "startTime": "2026-10-30T14:35:01.875Z",
+    "duration": 122120.232,
+    "expected": 32,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "productVersion": "1.1.0",
+  "scope": "Full local application; isolated H2 and browser acceptance. Not a production deployment or a complete public application.",
+  "checks": {
+    "backendTests": 132,
+    "clientAndCsvTests": 10,
+    "httpChecks": 15,
+    "packageChecks": 19,
+    "versionChecks": 8,
+    "deploymentScriptChecks": 10
+  },
+  "remainingDesktopNpmAudit": {
+    "high": 3,
+    "moderate": 6,
+    "critical": 0
+  },
+  "targetMySQL": "not tested",
+  "targetHTTPS": "not tested",
+  "targetClamAV": "not tested",
+  "externalAI": "not tested",
+  "localPackage": {
+    "name": "release-v1.1.0.zip",
+    "sha256": "b76ff2eb98173273e6cc1579b1fdb18a685097b723675aa5bc5d788bec351b50",
+    "bytes": 25313212,
+    "publishedToGitHub": false
+  }
+}

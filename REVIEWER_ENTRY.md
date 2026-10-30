@@ -10,6 +10,10 @@ This public selection focuses on the interaction model, state transitions, API c
 
 ## Latest implementation review
 
+Start with [v1.1.0](docs/releases/v1.1.0.md), [security findings](docs/security-review-20261030.md), [current extracts](examples/app-v1.1.0/README.md) and [screenshots](docs/screenshots-v1.1.0.md).
+
+### Previous review
+
 Start with the [2026-10-28 problem/fix table](docs/prelaunch-review-20261028.md), then inspect the [Vue extracts and integration patch](examples/vue-prelaunch/README.md). The 32-case browser result belongs to the full isolated application; the public static demo has its own four contract checks.
 
 ## Evidence path

@@ -1,0 +1,25 @@
+# Copy these location rules into the existing HTTPS server block created by Baota.
+# Do not replace the whole panel-generated virtual host with this snippet.
+# These headers belong at server scope. Merge/remove duplicate directives first.
+add_header X-Content-Type-Options nosniff always;
+add_header Referrer-Policy same-origin always;
+add_header X-Frame-Options DENY always;
+add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'" always;
+add_header Permissions-Policy "camera=(self), microphone=(), geolocation=(), display-capture=(self)" always;
+add_header Strict-Transport-Security "max-age=31536000" always;
+
+location = /api { return 308 /api/; }
+location ^~ /api/ {
+    # The trailing slash removes the /api/ prefix before forwarding to Spring Boot.
+    proxy_pass http://127.0.0.1:9999/;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_read_timeout 600s;
+    proxy_send_timeout 300s;
+    proxy_cache off;
+    client_max_body_size 110m;
+}
+
