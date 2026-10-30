@@ -6,6 +6,10 @@
 
 [Open the online showcase](https://guhang2011.github.io/counselor-workflow-showcase/) · [View the profile](https://github.com/GuHang2011)
 
+## v1.1.1 · 目录整理
+
+公开摘录按辅导员工作流项目统一命名为 [frontend](examples/app-v1.1.0/frontend) 与 [backend](examples/app-v1.1.0/backend)，同步打包示例、测试夹具和源码校验清单。摘录仍来自 v1.1.0 的应用代码，完整业务系统的验收结论沿用原记录。[本次说明与迁移](docs/releases/v1.1.1.md)。
+
 ## v1.1.0 · 2026-10-30
 
 本版整理清爽校园办公 UI、待办优先的工作台，以及会话隔离、断网退出、CSV 导出、登录限流、AI 配置与附件清理等 11 类修复。

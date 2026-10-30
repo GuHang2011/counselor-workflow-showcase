@@ -23,7 +23,7 @@ foreach ($relative in @('deploy/package-release.ps1','tests/package_release.ps1'
     if ($parseErrors.Count) { throw "Script parse failed: $relative" }
     Pass "PowerShell syntax: $relative"
 }
-foreach ($relative in @('deploy/linux','deploy/mysql','docs','.cache','CropDiseasesDetection_springboot/target','CropDiseasesDetection_vue/dist/assets','data','uploads')) {
+foreach ($relative in @('deploy/linux','deploy/mysql','docs','.cache','backend/target','frontend/dist/assets','data','uploads')) {
     New-Item -ItemType Directory -Path (Join-Path $fixtureRoot $relative) -Force | Out-Null
 }
 $runner = Join-Path $fixtureRoot 'deploy/package-release.ps1'
@@ -39,9 +39,9 @@ Write-Utf8 (Join-Path $fixtureRoot 'docs/宝塔面板部署指南.md') 'Baota gu
 Write-Utf8 (Join-Path $fixtureRoot 'docs/备份恢复与运行手册.md') 'Backup fixture'
 Write-Utf8 (Join-Path $fixtureRoot 'data/secret.db') 'must never enter a release'
 Write-Utf8 (Join-Path $fixtureRoot 'uploads/private.txt') 'must never enter a release'
-$jarPath = Join-Path $fixtureRoot 'CropDiseasesDetection_springboot/target/counselor-erp-1.0.0.jar'
-$htmlPath = Join-Path $fixtureRoot 'CropDiseasesDetection_vue/dist/index.html'
-$jsPath = Join-Path $fixtureRoot 'CropDiseasesDetection_vue/dist/assets/main.js'
+$jarPath = Join-Path $fixtureRoot 'backend/target/counselor-erp-1.0.0.jar'
+$htmlPath = Join-Path $fixtureRoot 'frontend/dist/index.html'
+$jsPath = Join-Path $fixtureRoot 'frontend/dist/assets/main.js'
 $browserPath = Join-Path $fixtureRoot '.cache/browser-results.json'
 $acceptancePath = Join-Path $fixtureRoot '.cache/acceptance-result.json'
 Write-Utf8 $jarPath 'isolated jar fixture, not executable'
@@ -122,7 +122,7 @@ $originalTemplate=[IO.File]::ReadAllText($templatePath)
 Write-Utf8 $templatePath ($originalTemplate + "`nERP_AI_API_KEY=fixture-secret`n")
 Reject 'Secrets in config template block packaging' 'must not contain passwords' { & $runner -Version unsafe-template -ReleaseNotes 'docs/notes.md' }
 Write-Utf8 $templatePath $originalTemplate
-Write-Utf8 (Join-Path $fixtureRoot 'CropDiseasesDetection_vue/dist/.env') 'fixture'
+Write-Utf8 (Join-Path $fixtureRoot 'frontend/dist/.env') 'fixture'
 Reject 'Private files in frontend output block packaging' 'Private data or configuration' { & $runner -Version private-web -ReleaseNotes 'docs/notes.md' }
 if (@(Get-ChildItem -LiteralPath (Join-Path $fixtureRoot 'deploy') -Directory -Filter 'release-*').Count -ne 1) { throw 'Rejected input created a release directory' }
 Pass 'All rejected inputs leave release outputs untouched'

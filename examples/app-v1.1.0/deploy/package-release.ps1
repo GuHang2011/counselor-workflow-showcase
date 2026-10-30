@@ -2,7 +2,7 @@
     [ValidatePattern('^[A-Za-z0-9]+(?:[._-][A-Za-z0-9]+)*$')]
     [ValidateLength(1,64)]
     [string]$Version = (Get-Date -Format 'yyyyMMdd-HHmmss'),
-    [string]$WebDirectory = 'CropDiseasesDetection_vue/dist',
+    [string]$WebDirectory = 'frontend/dist',
     [string]$ReleaseNotes = 'docs/上线优化与部署说明_20261018.md'
 )
 $ErrorActionPreference = 'Stop'
@@ -44,7 +44,7 @@ function Get-WebDigest([string]$Directory) {
 
 $acceptancePath = Join-Path $projectRoot '.cache/acceptance-result.json'
 $browserPath = Join-Path $projectRoot '.cache/browser-results.json'
-$jar = Join-Path $projectRoot 'CropDiseasesDetection_springboot/target/counselor-erp-1.0.0.jar'
+$jar = Join-Path $projectRoot 'backend/target/counselor-erp-1.0.0.jar'
 $web = if ([IO.Path]::IsPathRooted($WebDirectory)) { [IO.Path]::GetFullPath($WebDirectory) } else { [IO.Path]::GetFullPath((Join-Path $projectRoot $WebDirectory)) }
 if (-not (Test-Path -LiteralPath $web -PathType Container)) { throw "Production web directory does not exist: $web" }
 $web = $web.TrimEnd([IO.Path]::DirectorySeparatorChar,[IO.Path]::AltDirectorySeparatorChar)

@@ -1,4 +1,4 @@
-param([string]$WebDirectory = 'CropDiseasesDetection_vue/dist')
+param([string]$WebDirectory = 'frontend/dist')
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
 & python (Join-Path $projectRoot 'scripts/check_version.py')
