@@ -8,6 +8,10 @@ Administrative requests often move through several roles and states. The case st
 
 This public selection focuses on the interaction model, state transitions, API contract, architecture explanation, and responsive presentation. It is not a copy of a production system.
 
+## v1.1.3 review
+
+Start with the [eight UX fixes](docs/ux-review-20261031.md), [source and tests](examples/app-v1.1.3/README.md), [screenshots](docs/screenshots-v1.1.3.md) and [acceptance evidence](docs/evidence/v1.1.3.json).
+
 ## v1.1.2 review
 
 Start with the [seven functional fixes](docs/functional-review-20261031.md), [source and regression tests](examples/app-v1.1.2/README.md), [screenshots](docs/screenshots-v1.1.2.md) and [validation summary](docs/evidence/v1.1.2.json).

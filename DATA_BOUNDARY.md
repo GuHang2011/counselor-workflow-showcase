@@ -15,3 +15,7 @@ The six new screenshots use synthetic Demo users and tasks. AI settings show a p
 ## v1.1.2
 
 Two functional screenshots use synthetic task data and isolated erp_test accounts; the retry screen intentionally simulates a failed connection. The mobile image is cropped to the task panel without altering its content. Nine source/test excerpts and allowlisted test counts/hashes are published. Raw test reports, databases, attachments, credentials and the full deployment ZIP remain local.
+
+## v1.1.3
+
+Four unchanged screenshots show the isolated demo account and synthetic tasks. Nine frontend source/test excerpts and allowlisted validation counts/hashes are published. There is no real-user satisfaction study. Raw logs, databases, uploaded files, credentials and the full deployment package remain local.

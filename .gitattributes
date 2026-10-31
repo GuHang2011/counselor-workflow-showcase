@@ -2,3 +2,4 @@
 # Preserve reviewed source snapshots byte-for-byte for source-manifest.json.
 examples/app-v1.1.0/** -text whitespace=cr-at-eol,-blank-at-eof
 examples/app-v1.1.2/** -text whitespace=cr-at-eol,-blank-at-eof
+examples/app-v1.1.3/** -text whitespace=cr-at-eol,-blank-at-eof
