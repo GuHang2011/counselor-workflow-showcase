@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "version": "v1.1.2",
+  "packagedAt": "2026-10-31T15:13:39.0561224Z",
+  "acceptanceFinishedAt": "2026-10-31T15:12:52.580380+00:00",
+  "jarSha256": "01352a0ffd868e9abd328e878d7bd109a8474f75ec1298bcfce0a88df34b54ea",
+  "frontendSha256": "14dc3d2ef63038230c8da5852cde061d016cd8bad079cb4c9e2840ac4ba7a7cd",
+  "browserReportSha256": "eb630d972d7a250f12e88905ac309fca13bb2480d46bcdafaac559fed9d60dfa",
+  "httpSmoke": "passed",
+  "chatSmoke": "passed",
+  "browser": "passed",
+  "restart": "passed",
+  "browserStats": {
+    "startTime": "2026-10-31T15:10:30.971Z",
+    "duration": 135657.786,
+    "expected": 37,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "productVersion": "1.1.2",
+  "scope": "Isolated full local application, H2; new UI boundary cases use synthetic responses after real login. Public repo is an excerpt.",
+  "checks": {
+    "backendTests": 135,
+    "sharedLogicTests": 13,
+    "httpChecks": 15,
+    "packageChecks": 19,
+    "versionChecks": 8,
+    "deploymentScriptChecks": 10,
+    "newBrowserBoundaryCases": 5
+  },
+  "mutationCheck": "Inverted overdue comparison detected; original source restored",
+  "targetMySQL": "not tested",
+  "targetHTTPS": "not tested",
+  "targetClamAV": "not tested",
+  "externalAI": "not tested",
+  "dependencyAudit": "Not rerun this round. Prior v1.1.0 desktop audit: 3 high, 6 moderate remain.",
+  "localPackage": {
+    "name": "release-v1.1.2.zip",
+    "sha256": "802e87038d08385ee51674e92135603bbdd4a207a40d14db9e000710ac8c114b",
+    "bytes": 25313789,
+    "publishedToGitHub": false
+  }
+}

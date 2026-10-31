@@ -1,0 +1,47 @@
+[
+  {
+    "path": "frontend/src/App.vue",
+    "localSource": "CropDiseasesDetection_vue/src/App.vue",
+    "sha256": "48838852304b6950bf09df3ff03d0a8e0564383f2bba743ad66a665b5da15bd5"
+  },
+  {
+    "path": "frontend/src/components/TaskReminder.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/TaskReminder.vue",
+    "sha256": "a4d3103cebb2157e521cb1f43d0baee9138aa9b2254df8c963429ba6f106b695"
+  },
+  {
+    "path": "frontend/src/components/CollegeWork.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/CollegeWork.vue",
+    "sha256": "7ca23c56fd03ceec54044302afdc42ac4df5767e7c7d93f2d6ccebb1c1fb37bc"
+  },
+  {
+    "path": "frontend/src/components/CollegeReports.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/CollegeReports.vue",
+    "sha256": "806e19a219d4eb9183cfa55f7a3ad77ad9f2df5e16c9662f2c28c1175823b467"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/CollegeWorkController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/CollegeWorkController.java",
+    "sha256": "fad86544781db3907322684ce79936062313dc6ffbf5430bc972c11dcba15e74"
+  },
+  {
+    "path": "backend/src/test/java/com/example/Kcsj/CollegeWorkTests.java",
+    "localSource": "CropDiseasesDetection_springboot/src/test/java/com/example/Kcsj/CollegeWorkTests.java",
+    "sha256": "707b913161a3875976fade101efbd7336cff0f900529085a9b29e86fe2faf62c"
+  },
+  {
+    "path": "frontend/shared/college-work.ts",
+    "localSource": "CropDiseasesDetection_vue/shared/college-work.ts",
+    "sha256": "cd57f18b19675147f0d17dd310baeafaab1069142dc5189df92447f217cb7a65"
+  },
+  {
+    "path": "frontend/tests/college-work.test.cjs",
+    "localSource": "CropDiseasesDetection_vue/tests/college-work.test.cjs",
+    "sha256": "b14eda3de8b840b40b36c9f1c069d3c7404d69eee1c532aea3cfa274a18986d5"
+  },
+  {
+    "path": "frontend/tests/browser/functional-design.spec.ts",
+    "localSource": "CropDiseasesDetection_vue/tests/browser/functional-design.spec.ts",
+    "sha256": "632dff8d55d0fd597733f438bc496e32e24ae6487718844b38180db5e7c9dd78"
+  }
+]

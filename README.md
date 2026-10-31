@@ -6,6 +6,14 @@
 
 [Open the online showcase](https://guhang2011.github.io/counselor-workflow-showcase/) · [View the profile](https://github.com/GuHang2011)
 
+## v1.1.2 · 2026-10-31
+
+本版逐项修复 7 类功能设计问题：提醒直达、消息状态措辞、手机全选审核、任务生效与截止时间、跟进日期、实时逾期以及统计失败重试。
+
+- [版本说明](docs/releases/v1.1.2.md) · [问题与修复清单](docs/functional-review-20261031.md)
+- [9 份本轮代码摘录](examples/app-v1.1.2/README.md) · [最新功能截图](docs/screenshots-v1.1.2.md)
+- [脱敏验收摘要](docs/evidence/v1.1.2.json)：135 项后端、13 项共享逻辑、37 项浏览器回归通过；目标宝塔 MySQL 和真实服务环境仍需验证。
+
 ## v1.1.1 · 目录整理
 
 公开摘录按辅导员工作流项目统一命名为 [frontend](examples/app-v1.1.0/frontend) 与 [backend](examples/app-v1.1.0/backend)，同步打包示例、测试夹具和源码校验清单。摘录仍来自 v1.1.0 的应用代码，完整业务系统的验收结论沿用原记录。[本次说明与迁移](docs/releases/v1.1.1.md)。
@@ -72,7 +80,7 @@ These screenshots come from isolated test data and contain no real student recor
 | Dormitory allocation and hygiene | ![Dormitory desktop](assets/dorm-desktop.png) | ![Dormitory mobile](assets/dorm-mobile.png) |
 | AI-assisted news draft layout | — | ![News draft mobile](assets/news-mobile.png) |
 
-The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, account states with forced initial password changes, role-aware shortcuts and function search. The public showcase remains static and deliberately excludes those production credentials and data paths. See [`docs/ui-refresh-20261026.md`](docs/ui-refresh-20261026.md) for the previous refresh, and [`docs/prelaunch-review-20261028.md`](docs/prelaunch-review-20261028.md) for that historical snapshot. Current release evidence is in [`docs/releases/v1.1.0.md`](docs/releases/v1.1.0.md).
+The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, account states with forced initial password changes, role-aware shortcuts and function search. The public showcase remains static and deliberately excludes those production credentials and data paths. See [`docs/ui-refresh-20261026.md`](docs/ui-refresh-20261026.md) for the previous refresh, and [`docs/prelaunch-review-20261028.md`](docs/prelaunch-review-20261028.md) for that historical snapshot. Current release evidence is in [`docs/releases/v1.1.2.md`](docs/releases/v1.1.2.md).
 
 ## Run the static showcase locally
 

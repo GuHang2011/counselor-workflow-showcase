@@ -11,3 +11,7 @@ The screenshots are captured from the actual local application. Login screens ha
 ## v1.1.0
 
 The six new screenshots use synthetic Demo users and tasks. AI settings show a placeholder endpoint and no key. `examples/app-v1.1.0` adds reviewed frontend/backend source, regression tests and deployment examples; it is not a complete runnable system. Test strings are synthetic fixtures. Only the allowlisted counts and artifact hashes in `docs/evidence/v1.1.0.json` are published; raw reports, runtime databases, credentials and deployment binaries remain local.
+
+## v1.1.2
+
+Two functional screenshots use synthetic task data and isolated erp_test accounts; the retry screen intentionally simulates a failed connection. The mobile image is cropped to the task panel without altering its content. Nine source/test excerpts and allowlisted test counts/hashes are published. Raw test reports, databases, attachments, credentials and the full deployment ZIP remain local.
