@@ -6,6 +6,14 @@
 
 [Open the online showcase](https://guhang2011.github.io/counselor-workflow-showcase/) · [View the profile](https://github.com/GuHang2011)
 
+## v1.3.1 · 2026-11-01
+
+参考 Element 设计规范统一办公界面：任务操作集中、学生筛选带标签并支持回车查询，手机首页直接显示五类待办。保留学院特色、角色权限和 v1.3.0 导入导出功能。
+
+- [问题与修改](docs/element-ui-v1.3.1.md) · [版本说明](docs/releases/v1.3.1.md)
+- [7 份源文件摘录](examples/app-v1.3.1/README.md) · [6 张新截图](docs/screenshots-v1.3.1.md)
+- [验收证据](docs/evidence/v1.3.1.json)：37 项浏览器回归、15 项 HTTP 检查、5 组界面专项、类型检查与生产构建通过。无新增 SQL 迁移。
+
 ## v1.3.0 · 2026-11-01
 
 业务资料与内部聊天补齐导入、导出和打印。任务与床位先检查再确认，学生名单按当前列表输出，宿舍床位、人员变动和卫生分别输出；聊天支持完整历史 TXT / CSV、日期筛选及打印，新增 UTF-8 TXT / CSV 文件收发。
@@ -104,7 +112,7 @@ These screenshots come from isolated test data and contain no real student recor
 | Dormitory allocation and hygiene | ![Dormitory desktop](assets/dorm-desktop.png) | ![Dormitory mobile](assets/dorm-mobile.png) |
 | AI-assisted news draft layout | — | ![News draft mobile](assets/news-mobile.png) |
 
-The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, account states with forced initial password changes, role-aware shortcuts and function search. The public showcase remains static and deliberately excludes those production credentials and data paths. See [`docs/ui-refresh-20261026.md`](docs/ui-refresh-20261026.md) for the previous refresh, and [`docs/prelaunch-review-20261028.md`](docs/prelaunch-review-20261028.md) for that historical snapshot. Current release evidence is in [`docs/releases/v1.3.0.md`](docs/releases/v1.3.0.md).
+The underlying application now supports personal task statistics, text and editable PPT reports, optional AI news drafting with image layout, multi-review with rejection comments, administrator time extensions, file-required tasks, account states with forced initial password changes, role-aware shortcuts and function search. The public showcase remains static and deliberately excludes those production credentials and data paths. See [`docs/ui-refresh-20261026.md`](docs/ui-refresh-20261026.md) for the previous refresh, and [`docs/prelaunch-review-20261028.md`](docs/prelaunch-review-20261028.md) for that historical snapshot. Current release evidence is in [`docs/releases/v1.3.1.md`](docs/releases/v1.3.1.md).
 
 ## Run the static showcase locally
 

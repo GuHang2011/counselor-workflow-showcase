@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "version": "v1.3.1",
+  "packagedAt": "2026-10-31T17:41:01.5195497Z",
+  "acceptanceFinishedAt": "2026-10-31T17:40:33.461224+00:00",
+  "jarSha256": "ffe67422d3bf5a1fa58e82977d10dbbe15c4717227c4e157674d8eebae28e055",
+  "frontendSha256": "86b188124df5112fcbf70aec2d94636b394699541008c6432bf4ccf3fff99744",
+  "browserReportSha256": "b306181d06daea56b4ecd2c2cff5f1673ada0146ed1f795392396067728a4d92",
+  "httpSmoke": "passed",
+  "chatSmoke": "passed",
+  "browser": "passed",
+  "restart": "passed",
+  "browserStats": {
+    "startTime": "2026-10-31T17:38:06.818Z",
+    "duration": 140575.881,
+    "expected": 37,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "productVersion": "1.3.1",
+  "scope": "Isolated H2 acceptance using the production desktop build; UI checks and synthetic screenshots use the local demo.",
+  "checks": {
+    "desktopTypecheck": "passed",
+    "desktopProductionBuild": "passed",
+    "httpChecks": 15,
+    "uiScenarioGroups": 5,
+    "uiScenarios": [
+      "Student filters have labels, Enter queries, reset restores rows, empty export is disabled, saved filters expand with keyboard",
+      "Student list and import dialog fit five viewport sizes, with fixed file action column",
+      "Task scope, search, grouped publishing, import and mobile output menu remain usable; dialog footer stays in viewport",
+      "All five mobile dashboard categories are visible and switch correctly without horizontal scrolling",
+      "College login styling fits desktop and phone; empty submission stays on login"
+    ],
+    "newPageErrors": []
+  },
+  "backendUnitTests": {
+    "previousVersion": "1.3.0",
+    "previousPassed": 147,
+    "rerunForThisFrontendPatch": false,
+    "sameJarVerified": true
+  },
+  "mobileH5": "Unchanged source; existing H5 browser acceptance rerun; no new native or mini-program testing.",
+  "targetProduction": "not deployed or server-tested",
+  "databaseMigration": "none",
+  "dependencyChange": "none",
+  "localPackage": {
+    "name": "release-v1.3.1.zip",
+    "sha256": "9ef790b144a842f7d097f7d1dbc8a0532651f474d0677d4492812d9352b9fdd5",
+    "bytes": 25411072,
+    "publishedToGitHub": false
+  }
+}

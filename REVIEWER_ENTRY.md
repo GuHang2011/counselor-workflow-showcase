@@ -8,6 +8,10 @@ Administrative requests often move through several roles and states. The case st
 
 This public selection focuses on the interaction model, state transitions, API contract, architecture explanation, and responsive presentation. It is not a copy of a production system.
 
+## v1.3.1 review
+
+Review [UI decisions](docs/element-ui-v1.3.1.md), [source](examples/app-v1.3.1/README.md), [screenshots](docs/screenshots-v1.3.1.md) and [verification](docs/evidence/v1.3.1.json).
+
 ## v1.3.0 review
 
 Review [data import/output boundaries](docs/data-io-v1.3.0.md), [source](examples/app-v1.3.0/README.md), [screenshots](docs/screenshots-v1.3.0.md) and [verification](docs/evidence/v1.3.0.json).

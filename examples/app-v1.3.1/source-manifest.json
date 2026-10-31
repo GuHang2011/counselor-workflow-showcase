@@ -1,0 +1,37 @@
+[
+  {
+    "path": "frontend/src/App.vue",
+    "localSource": "CropDiseasesDetection_vue/src/App.vue",
+    "sha256": "1e22edcf5080b54c06a547f3aeed8af3db1b760884af676b3271840c4d9e3b4c"
+  },
+  {
+    "path": "frontend/src/components/CollegeWork.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/CollegeWork.vue",
+    "sha256": "540975443fcb72b5c59c0e415df64af8e20fdadb1479fbc355f6fc30cb6c1b06"
+  },
+  {
+    "path": "frontend/src/components/StudentRegistry.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/StudentRegistry.vue",
+    "sha256": "622319337ec7d84eb8ab54da23a27557c8feeb186cd93c8e5c8130816e0ac776"
+  },
+  {
+    "path": "frontend/src/components/WorkDashboard.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/WorkDashboard.vue",
+    "sha256": "e038134f8e57761e70c679fb0bd0168c073d7967d25ab02608124ae70f700a10"
+  },
+  {
+    "path": "frontend/src/components/college-work.css",
+    "localSource": "CropDiseasesDetection_vue/src/components/college-work.css",
+    "sha256": "bdb6fd53c6ca8312eab9cb4efaa3de2d271bcb5cdf12d4eeccd45c61ff68003b"
+  },
+  {
+    "path": "frontend/src/main.ts",
+    "localSource": "CropDiseasesDetection_vue/src/main.ts",
+    "sha256": "a483b454b4bfc76aa0f25ff4a3cc378cb1154cfe3dd57c2e66cd2986489947cc"
+  },
+  {
+    "path": "frontend/src/workspace.css",
+    "localSource": "CropDiseasesDetection_vue/src/workspace.css",
+    "sha256": "faf1865eca0c7b0b5a6cd56c29e7967af602ac4b4df9cd2af2935d0dfa1759f5"
+  }
+]

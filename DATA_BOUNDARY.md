@@ -27,3 +27,7 @@ Four screenshots use isolated demo accounts and synthetic chat messages. The 24-
 ## v1.3.0
 
 Five screenshots use isolated demo accounts and synthetic student, task, dorm and chat data. Source excerpts preserve the reviewed local bytes. Export authorization is rechecked; imports are previewed and committed atomically. Raw logs, credentials, exported personal records, uploads and full deployment packages remain local.
+
+## v1.3.1
+
+Six screenshots use isolated demo accounts and synthetic records. Seven reviewed front-end sources are preserved byte-for-byte. Raw logs, credentials, student exports, uploads and deployment ZIP files remain local.
