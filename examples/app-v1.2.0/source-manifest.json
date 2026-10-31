@@ -1,0 +1,122 @@
+[
+  {
+    "path": "frontend/src/App.vue",
+    "localSource": "CropDiseasesDetection_vue/src/App.vue",
+    "sha256": "280c5f45f281d5f779aa00a1b53785cc4e1eb7d2ccb7fb970a146159e6434b5f"
+  },
+  {
+    "path": "frontend/src/components/InternalChat.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/InternalChat.vue",
+    "sha256": "359582ebbb32fb1cd007cf597c1ab53f84389683dba5e7d5336c2e91d5b990a7"
+  },
+  {
+    "path": "frontend/src/components/ChatExpressions.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/ChatExpressions.vue",
+    "sha256": "4bd3d677897bfc7d62224ba544521c4fa58d0c153a06af09673e33984f0d938b"
+  },
+  {
+    "path": "frontend/mobile/src/components/MobileChat.vue",
+    "localSource": "CropDiseasesDetection_vue/mobile/src/components/MobileChat.vue",
+    "sha256": "033a8cff9eaa135e433a471bfb9488d443487ff6a9d6b7ef81d716dec10fc7c5"
+  },
+  {
+    "path": "frontend/mobile/src/components/MobileChatExpressions.vue",
+    "localSource": "CropDiseasesDetection_vue/mobile/src/components/MobileChatExpressions.vue",
+    "sha256": "b7039e6988c236de10242bbd569adce9a37e64f613c07a428714ad1d93eaefcf"
+  },
+  {
+    "path": "frontend/shared/chat-expressions.ts",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-expressions.ts",
+    "sha256": "8bf750b2f423f146d09864b30be8bb124b0a2db687d32cec02825bdbb573e89e"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/README.md",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/README.md",
+    "sha256": "a966ff900d1285de189fca41a7cd9036443b1311675b5c186dada2fdc96fe9c0"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/received.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/received.png",
+    "sha256": "5a971bb6ff285a1ba16a9405b9163a778f07db1db5493552ea3fc9b00516a7ad"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/okay.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/okay.png",
+    "sha256": "0abd52314e334adc46ffcad7f6ac437f38073ff0173644dca81847401bb7a5ba"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/thanks.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/thanks.png",
+    "sha256": "d2d9ff95da27630bf21643a0f6bbce34200a0f154ce6470c55b910afc70aec71"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/hard-work.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/hard-work.png",
+    "sha256": "da350834587583c3a6da79b57ac2a86fc532e75eb096508da4bb2ebbf4fd5140"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/cheer.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/cheer.png",
+    "sha256": "9d18ee6c3e57a90e53354a6b045040c39ca15a8a143e171f6fe3733e2d26b981"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/great.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/great.png",
+    "sha256": "f9f361eae4c82812cb3da27a85fd6b35fb9e5f30ecf285207058ba7347132027"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/wait.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/wait.png",
+    "sha256": "742204aad0d55fbb2d3e7e297c3fb9020558de1ddd00d460fdd05144cc2e53d1"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/done.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/done.png",
+    "sha256": "06569514f6b7f1c198e6deb65be716ea6f447666830171603046de2d92a9d5fb"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/check-files.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/check-files.png",
+    "sha256": "867bf68032271227e991c4361b1831e134a4a17763182252c6019af5011fc8f1"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/together.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/together.png",
+    "sha256": "9719b911cdd3657994f11309fbe9b87ddaf169576adfb82d795cd7cbedb42317"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/morning.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/morning.png",
+    "sha256": "86f139cd93b3804f8030f89b7e3f1640b066a3d4381e6698a289ce4f44f97a10"
+  },
+  {
+    "path": "frontend/shared/chat-stickers/sorry.png",
+    "localSource": "CropDiseasesDetection_vue/shared/chat-stickers/sorry.png",
+    "sha256": "0150f7c89e5aede452d035822259e5489cac06277ef9e5e232e9024c156dc8e4"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/ChatService.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/ChatService.java",
+    "sha256": "d1984b8122310f2be9b4c522f9aecf77c9f2a13c1f70889f41d184d3170f3cd4"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/ChatStickerCatalog.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/ChatStickerCatalog.java",
+    "sha256": "a7bdb068f4ba84df53ba3c4b340d6bb4bf7edd60057888ecb10a8af881f4a058"
+  },
+  {
+    "path": "backend/src/test/java/com/example/Kcsj/ChatContractTests.java",
+    "localSource": "CropDiseasesDetection_springboot/src/test/java/com/example/Kcsj/ChatContractTests.java",
+    "sha256": "698fe5ad48538712a7928555b6c72d83f69a83a48678029ea7738ee0231716fc"
+  },
+  {
+    "path": "tests/erp_chat_smoke.py",
+    "localSource": "tests/erp_chat_smoke.py",
+    "sha256": "04badf7d862cdc1e85b721309f8d4ce8c6e659d4bf5efc283db8d4a60a871080"
+  },
+  {
+    "path": "tests/erp_acceptance.py",
+    "localSource": "tests/erp_acceptance.py",
+    "sha256": "76a946c6650b575740d7dda0aa70439c0c1ba2c82b783d735645722c507a2a12"
+  }
+]

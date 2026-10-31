@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "version": "v1.2.0",
+  "packagedAt": "2026-10-31T16:35:29.4525678Z",
+  "acceptanceFinishedAt": "2026-10-31T16:35:11.563292+00:00",
+  "jarSha256": "1db2ff1a8557d3cc95030b44381d782fffdb69941acfb57e9177bc5b7bf7bc95",
+  "frontendSha256": "ea30ae738a36daf3e313e48fe1a5eda382ca335530f200812d3578aaf9959b4a",
+  "browserReportSha256": "a1c5030dc7f38306f3fab2a6744b8f45cc78907523b7e1cbe2151aec60a9d562",
+  "httpSmoke": "passed",
+  "chatSmoke": "passed",
+  "browser": "passed",
+  "restart": "passed",
+  "browserStats": {
+    "startTime": "2026-10-31T16:32:46.125Z",
+    "duration": 140839.665,
+    "expected": 37,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "productVersion": "1.2.0",
+  "scope": "Full local app in isolated H2 acceptance. Additional CLI flows use demo accounts and synthetic messages; network failure is simulated by dropping test responses.",
+  "checks": {
+    "backendTests": 138,
+    "newBackendContractTests": 3,
+    "httpChecks": 15,
+    "versionChecks": 8,
+    "stickerBrowserScenarioGroups": 7,
+    "featureSearch": "passed",
+    "desktopTypecheck": "passed",
+    "desktopProductionBuild": "passed",
+    "mobileH5ProductionBuild": "passed"
+  },
+  "builtInStickers": 12,
+  "commonEmoji": 24,
+  "customStickers": "not included; user chose built-in stickers and common emoji",
+  "targetMySQL": "not tested",
+  "targetHTTPS": "not tested",
+  "targetClamAV": "not tested",
+  "nativeAppAndWeChat": "not tested on devices",
+  "externalAI": "not tested",
+  "dependencyAudit": "Not rerun; prior dependency and old-framework risks remain.",
+  "localPackage": {
+    "name": "release-v1.2.0.zip",
+    "sha256": "6ad23112c1382ed7072d1bc4c0e99ccb9fc808b491498b9396077d0edf251bba",
+    "bytes": 25392272,
+    "publishedToGitHub": false
+  }
+}

@@ -19,3 +19,7 @@ Two functional screenshots use synthetic task data and isolated erp_test account
 ## v1.1.3
 
 Four unchanged screenshots show the isolated demo account and synthetic tasks. Nine frontend source/test excerpts and allowlisted validation counts/hashes are published. There is no real-user satisfaction study. Raw logs, databases, uploaded files, credentials and the full deployment package remain local.
+
+## v1.2.0
+
+Four screenshots use isolated demo accounts and synthetic chat messages. The 24-file source snapshot includes 12 original robot sticker images. Images are bundled locally; messages accept only fixed sticker identifiers. Raw logs, preview credentials, private records and full deployment packages remain local.
