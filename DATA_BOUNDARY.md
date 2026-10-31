@@ -23,3 +23,7 @@ Four unchanged screenshots show the isolated demo account and synthetic tasks. N
 ## v1.2.0
 
 Four screenshots use isolated demo accounts and synthetic chat messages. The 24-file source snapshot includes 12 original robot sticker images. Images are bundled locally; messages accept only fixed sticker identifiers. Raw logs, preview credentials, private records and full deployment packages remain local.
+
+## v1.3.0
+
+Five screenshots use isolated demo accounts and synthetic student, task, dorm and chat data. Source excerpts preserve the reviewed local bytes. Export authorization is rechecked; imports are previewed and committed atomically. Raw logs, credentials, exported personal records, uploads and full deployment packages remain local.

@@ -1,0 +1,57 @@
+<template>
+<view class="material-card">
+  <view class="title">附件材料</view><view class="row"><button :disabled="busy||!!preview" @click="photo">拍照 / 相册</button><button :disabled="busy||!!preview" @click="video">选择录屏</button><button :disabled="busy||!!preview" @click="document">选择文件</button></view>
+  <text class="hint">支持 TXT / CSV（UTF-8）、PDF、Word、Excel。照片 10 MB、文档 20 MB、录屏 100 MB / 5 分钟。只上传本事项必需的内容；录屏前请关闭聊天、账号密码和无关个人信息。文件检查通过后才能正式提交。</text>
+  <view v-if="preview" class="preview">
+    <view class="title">上传前确认</view><text class="hint">{{ preview.name }} · {{ sizeLabel(preview.size) }}</text>
+    <image v-if="preview.type==='image'" :src="preview.path" mode="widthFix" class="preview-image" @click="viewPhoto"/>
+    <video v-if="preview.type==='video'" :src="preview.path" :autoplay="false" :controls="true" class="preview-video"/>
+    <view v-if="preview.type==='image'"><view class="row"><button size="mini" :disabled="busy||!!preview.uploadControl?.uploadId" @click="rotate">旋转 90°</button><button size="mini" :disabled="busy||!!preview.uploadControl?.uploadId" @click="resetImage">恢复原图</button></view><text class="hint">中心裁剪保留 {{ crop }}%</text><slider :value="crop" :min="40" :max="100" :step="5" show-value @change="crop=$event.detail.value"/><text class="hint">压缩质量 {{ quality }}% · 最长边 1600 像素</text><slider :value="quality" :min="50" :max="95" :step="5" show-value @change="quality=$event.detail.value"/><button size="mini" :disabled="busy||!!preview.uploadControl?.uploadId" @click="applyImage">应用裁剪与压缩并预览</button></view>
+    <text v-if="preview.type==='video'" class="hint">时长 {{ Math.ceil(preview.duration) }} 秒。系统不录制麦克风；已有录屏中的声音及敏感信息请自行检查。</text>
+    <text v-if="preview.type==='document'" class="hint">请核实文件内容和接收用途；提交前可以取消重选。</text>
+    <view class="row"><button :disabled="busy" @click="cancelPreview">取消此文件</button><button v-if="uploading" @click="pauseUpload">暂停上传</button><button v-else class="primary" :disabled="busy" @click="confirmUpload">{{ preview.uploadControl?.uploadId || preview.uploadControl?.paused ? '继续上传' : '确认上传' }}</button></view>
+    <text class="hint">网络中断后可继续；退出后在 24 小时内重新选择同一原文件，可恢复已上传分片。换账号不能读取或继续他人的上传。</text>
+  </view>
+  <view v-if="busy" class="hint">{{ busyText }} {{ progress ? progress+'%' : '' }}</view>
+  <view v-for="f in files" :key="f.id" class="file-row"><text>{{ f.name }}</text><text class="hint">{{ processingLabel(f.processingStatus) }}</text><view class="row"><button v-if="['quarantined','rejected'].includes(f.processingStatus)" :disabled="busy" @click="recheck(f)">重新检查</button><button :disabled="busy" @click="remove(f.id)">移除</button></view></view>
+  <view v-if="error" class="error">{{ error }}</view>
+  <canvas :id="canvasId" :canvas-id="canvasId" :style="canvasStyle"/>
+</view>
+</template>
+<script setup lang="ts">
+import {ref,watch,computed,onBeforeUnmount,getCurrentInstance,nextTick} from 'vue';import {api} from '../platform';
+import {uploadResumable,newUploadControl,cancelUpload} from '../resumable';
+const uploading=ref(false);
+const props=defineProps<{modelValue:string[]}>(),emit=defineEmits(['update:modelValue','busy']);const busy=ref(false),progress=ref(0),error=ref(''),busyText=ref('处理中'),files=ref<any[]>([]),preview=ref<any>(null),crop=ref(100),quality=ref(80),rotation=ref(0),canvasWidth=ref(1),canvasHeight=ref(1);const instance=getCurrentInstance(),canvasId='material-'+Math.random().toString(36).slice(2);let mounted=true,checking=false,loadGeneration=0,lastEmitted='';
+const pending=computed(()=>busy.value||!!preview.value||files.value.some(f=>f.processingStatus!=='ready'));watch(pending,v=>emit('busy',v),{immediate:true});const canvasStyle=computed(()=>`position:fixed;left:-10000px;top:-10000px;width:${canvasWidth.value}px;height:${canvasHeight.value}px;`);
+const sizeLabel=(size:number)=>(size/1048576).toFixed(2)+' MB';const processingLabel=(value:string)=>({ready:'可提交',queued:'已入队，等待安全检查',processing:'安全检查中',quarantined:'已隔离，不能提交',rejected:'检查未通过'} as Record<string,string>)[value]||'等待检查';
+watch(()=>props.modelValue,async ids=>{const signature=JSON.stringify(ids);if(signature===lastEmitted)return;const generation=++loadGeneration;if(!ids.length){if(!files.value.some(f=>f.processingStatus!=='ready')&&!preview.value&&!busy.value)files.value=[];else files.value=files.value.filter(f=>f.processingStatus!=='ready');return;}try{const list=await api('/files');if(!mounted||generation!==loadGeneration)return;const pendingFiles=files.value.filter(f=>f.processingStatus!=='ready');const loaded=list.filter((f:any)=>ids.includes(f.id));files.value=[...loaded,...pendingFiles.filter(f=>!loaded.some((x:any)=>x.id===f.id))];}catch(e){error.value=(e as Error).message;}},{immediate:true});
+function sync(){const next=files.value.filter(f=>f.processingStatus==='ready').map(f=>f.id);if(JSON.stringify(next)!==JSON.stringify(props.modelValue)){lastEmitted=JSON.stringify(next);emit('update:modelValue',next);}}
+function remove(id:string){files.value=files.value.filter(f=>f.id!==id);sync();error.value='';}
+async function cancelPreview(){if(busy.value)return;const p=preview.value;if(!p)return;busy.value=true;try{await cancelUpload(p.uploadControl);preview.value=null;error.value='';}catch(e){error.value=(e as Error).message||'取消尚未确认，请联网后再试。';}finally{busy.value=false;}}
+function pauseUpload(){if(!preview.value)return;preview.value.uploadControl.paused=true;preview.value.uploadControl.abort?.();}
+async function recheck(f:any){busy.value=true;busyText.value='重新检查';try{Object.assign(f,await api('/files/'+f.id+'/recheck','POST'));sync();}catch(e){error.value=(e as Error).message;}finally{busy.value=false;}}
+const timer=setInterval(async()=>{if(checking||busy.value)return;const queued=files.value.filter(x=>['queued','processing'].includes(x.processingStatus));if(!queued.length)return;checking=true;try{for(const f of queued){const result=await api('/files/'+f.id);if(!mounted)return;Object.assign(f,result);if(['quarantined','rejected'].includes(f.processingStatus))error.value=f.processingMessage||'安全检查未通过，请移除或核验后重试。';}sync();}catch(e){if(mounted)error.value=(e as Error).message;}finally{checking=false;}},3000);
+onBeforeUnmount(()=>{mounted=false;++loadGeneration;pauseUpload();clearInterval(timer);emit('busy',false);});
+async function selectedFile(path:string,name:string,size:number,source:string,type:string,duration=0){if(files.value.length>=10){error.value='每个事项最多 10 个附件。';return;}error.value='';crop.value=100;quality.value=80;rotation.value=0;preview.value={path,name,size,source,type,duration,originalPath:path,originalName:name,originalSize:size,uploadControl:newUploadControl()};if(type==='image'){try{const info:any=await new Promise((resolve,reject)=>uni.getImageInfo({src:path,success:resolve,fail:reject}));preview.value.width=info.width;preview.value.height=info.height;}catch{error.value='无法读取照片，请选择 JPG 或 PNG 文件。';preview.value=null;}}}
+function photo(){uni.chooseImage({count:1,sizeType:['original'],sourceType:['camera','album'],success:r=>{const f=(r.tempFiles as any[])[0];selectedFile(f.path,f.name||'照片-'+Date.now()+'.jpg',f.size,'camera','image');},fail:()=>error.value='未选择照片；可在系统设置开启相机权限，或从相册选择。'});}
+function video(){uni.chooseVideo({sourceType:['album'],compressed:false,success:r=>{if(!r.duration||r.duration>300){error.value='录屏须能读取时长且不超过 5 分钟，请先裁剪或转换。';return;}if(r.size>100*1048576){error.value='录屏超过 100 MB，请先压缩。';return;}const ext=r.tempFilePath.split('.').pop()?.split('?')[0]?.toLowerCase();selectedFile(r.tempFilePath,'录屏-'+Date.now()+'.'+(['mp4','mov','webm'].includes(ext||'')?ext:'mp4'),r.size,'screen','video',r.duration);},fail:()=>error.value='未选择视频，可先使用系统录屏后重试。'});}
+function viewPhoto(){if(preview.value)uni.previewImage({urls:[preview.value.path]});}
+function rotate(){rotation.value=(rotation.value+90)%360;applyImage();}
+function resetImage(){if(!preview.value)return;preview.value.path=preview.value.originalPath;preview.value.name=preview.value.originalName;preview.value.size=preview.value.originalSize;crop.value=100;rotation.value=0;error.value='';}
+async function fileSize(path:string,fallback:number){try{return await new Promise<number>((resolve)=>uni.getFileInfo({filePath:path,success:r=>resolve(r.size),fail:()=>resolve(fallback)}));}catch{return fallback;}}
+async function applyImage(){if(!preview.value||preview.value.type!=='image'||busy.value)return;busy.value=true;busyText.value='处理照片';progress.value=0;try{const p=preview.value,cw=p.width*crop.value/100,ch=p.height*crop.value/100,scale=Math.min(1,1600/Math.max(cw,ch)),dw=Math.round(cw*scale),dh=Math.round(ch*scale),turned=rotation.value%180!==0;canvasWidth.value=turned?dh:dw;canvasHeight.value=turned?dw:dh;await nextTick();const ctx=uni.createCanvasContext(canvasId,instance?.proxy);ctx.setFillStyle('#ffffff');ctx.fillRect(0,0,canvasWidth.value,canvasHeight.value);ctx.save();ctx.translate(canvasWidth.value/2,canvasHeight.value/2);ctx.rotate(rotation.value*Math.PI/180);ctx.drawImage(p.originalPath,(p.width-cw)/2,(p.height-ch)/2,cw,ch,-dw/2,-dh/2,dw,dh);ctx.restore();await new Promise<void>(resolve=>ctx.draw(false,()=>resolve()));const result:any=await new Promise((resolve,reject)=>uni.canvasToTempFilePath({canvasId,x:0,y:0,width:canvasWidth.value,height:canvasHeight.value,destWidth:canvasWidth.value,destHeight:canvasHeight.value,fileType:'jpg',quality:quality.value/100,success:resolve,fail:reject},instance?.proxy));if(!mounted)return;p.path=result.tempFilePath;p.name='已处理照片-'+Date.now()+'.jpg';p.size=await fileSize(result.tempFilePath,p.originalSize);p.edited=true;}catch{error.value='此设备照片编辑失败，可恢复原图后上传，或在系统相册裁剪后重新选择。';}finally{busy.value=false;}}
+async function confirmUpload(){if(!preview.value||busy.value)return;const p=preview.value,limit=p.type==='video'?100:p.type==='image'?10:20;if(p.size>limit*1048576){error.value=`文件超过 ${limit} MB，请压缩或裁剪后再上传。`;return;}busy.value=true;uploading.value=true;busyText.value='校验文件';progress.value=0;error.value='';try{const f=await uploadResumable(p.path,p.name,p.source,p.size,p.uploadControl,(n,phase)=>{progress.value=n;busyText.value=phase;});if(!mounted)return;files.value.push(f);preview.value=null;sync();}catch(e){if(mounted)error.value=(e as Error).message||'网络中断，文件仍保留在预览中，可继续上传或取消。';}finally{busy.value=false;uploading.value=false;}}
+function document(){
+  // #ifdef MP-WEIXIN
+  uni.chooseMessageFile({count:1,type:'file',success:r=>{const f=r.tempFiles[0];selectedFile(f.path,f.name,f.size,'file',/\.(jpg|jpeg|png)$/i.test(f.name)?'image':'document');}});
+  // #endif
+  // #ifdef H5
+  uni.chooseFile({count:1,extension:['.txt','.csv','.pdf','.docx','.xlsx','.jpg','.jpeg','.png'],success:r=>{const f=(r.tempFiles as any[])[0];selectedFile(f.path,f.name,f.size,'file',/\.(jpg|jpeg|png)$/i.test(f.name)?'image':'document');}});
+  // #endif
+  // #ifdef APP-PLUS
+  error.value='当前 App 可选择照片与录屏；PDF、Word 等文档请通过学校手机网页选择上传。';
+  // #endif
+}
+</script>
+<style scoped>.material-card{margin:12px 0;padding:14px;background:#f8fafc;border:1px solid #dce3ed;border-radius:10px}.title{font-size:16px;font-weight:600;margin-bottom:10px}.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row button{flex:1;font-size:13px;margin:0;min-width:85px}.hint{display:block;font-size:12px;color:#64748b;line-height:1.8}.preview{padding-top:14px}.preview-image,.preview-video{display:block;width:100%;max-height:320px;margin:12px 0}.file-row{padding-top:12px;border-top:1px solid #dde5ef;margin-top:12px}.error{color:#b42334;font-size:13px;line-height:1.7;margin:10px 0}.primary{background:var(--brand,#2766c4);color:white}</style>

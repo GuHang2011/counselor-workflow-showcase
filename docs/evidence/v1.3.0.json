@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "version": "v1.3.0",
+  "packagedAt": "2026-10-31T17:22:11.9738092Z",
+  "acceptanceFinishedAt": "2026-10-31T17:20:07.678623+00:00",
+  "jarSha256": "ffe67422d3bf5a1fa58e82977d10dbbe15c4717227c4e157674d8eebae28e055",
+  "frontendSha256": "7c41f9c69e108fee9a2794012c4297c284161e610926303e33f79accc6efb05b",
+  "browserReportSha256": "c11fcf1d25fdcce81c1eaaff4a013a4023fc8b85d72b05958cb6b745c92917fa",
+  "httpSmoke": "passed",
+  "chatSmoke": "passed",
+  "browser": "passed",
+  "restart": "passed",
+  "browserStats": {
+    "startTime": "2026-10-31T17:17:44.890Z",
+    "duration": 138034.412,
+    "expected": 37,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "productVersion": "1.3.0",
+  "scope": "Full local app using isolated H2 and synthetic accounts; browser CLI scenarios use the isolated demo preview.",
+  "checks": {
+    "backendTests": 147,
+    "newBackendContractTests": 9,
+    "httpChecks": 15,
+    "versionChecks": 8,
+    "desktopTypecheck": "passed",
+    "desktopProductionBuild": "passed",
+    "mobileH5ProductionBuild": "passed",
+    "browserScenarioGroups": 8
+  },
+  "browserScenarioDetails": [
+    "CSV preview, atomic confirmation, response-loss retry without duplicates",
+    "filtered task export, CSV formula safety, literal-text print and PDF layout",
+    "student CSV/print and responsive layouts",
+    "bed import, correctly scoped dorm export and mobile layout",
+    "CSV file import through resumable upload, security processing and send",
+    "complete chat TXT/CSV/print, dates, empty state, failure retry and responsive panel",
+    "mobile H5 receiver file download, full chat export and print",
+    "XLSX preview errors, disabled commit, error export, corrected import and small-screen dialog"
+  ],
+  "databaseMigration": "none",
+  "targetMySQL": "not tested",
+  "targetHTTPS": "not tested",
+  "targetClamAV": "not tested",
+  "nativeAppAndWeChatPrinting": "not implemented or device-tested",
+  "dependencyAudit": "Not rerun; prior dependency and framework risks remain.",
+  "localPackage": {
+    "name": "release-v1.3.0.zip",
+    "sha256": "f7e82b82bec9a351732349eb8b1280f5adde65dc51f1fdaf9aeb4050778de4a6",
+    "bytes": 26041346,
+    "publishedToGitHub": false
+  }
+}

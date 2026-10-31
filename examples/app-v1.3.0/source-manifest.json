@@ -1,0 +1,112 @@
+[
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/WorkImportController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/WorkImportController.java",
+    "sha256": "1b59736c8dc2a5915fb1cbe2b313bc17a56c2defd5c94056ff0a05ac05fb719b"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/ChatService.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/ChatService.java",
+    "sha256": "73148550d345d85e9bd71951d6aed4c0e868da38e078751de466a10dbae53428"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/ChatController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/ChatController.java",
+    "sha256": "8c0052aa5da684daf10364dc48a3e29e0f94559caa674a260b07bc54956773cc"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/StudentRecordsController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/StudentRecordsController.java",
+    "sha256": "ea89c20107e8cb1b1e18f2b77b89049cb0a4c83c5595f27da688e433dddf1dea"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/CollegeWorkController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/CollegeWorkController.java",
+    "sha256": "214939071cc68856b485d9cb9e4d53c4ac22524d972fe4ed805ba1a0d4ef3194"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/RetentionController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/RetentionController.java",
+    "sha256": "bae194bda641a2ec3688f264e5c6b6bdbed5d5c9426873c2f22c50a9ee96a491"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/AttachmentController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/AttachmentController.java",
+    "sha256": "c8e828b44c2048dbd6863633d7cc383ea26113d938a6d20df0ccdd4a197beae5"
+  },
+  {
+    "path": "backend/src/main/java/com/example/Kcsj/erp/ResumableUploadController.java",
+    "localSource": "CropDiseasesDetection_springboot/src/main/java/com/example/Kcsj/erp/ResumableUploadController.java",
+    "sha256": "4d91a84cc7cb2985c77996fba7213ae89c44946f424f7d6d7601de9ebeec68a0"
+  },
+  {
+    "path": "backend/src/test/java/com/example/Kcsj/WorkIoContractTests.java",
+    "localSource": "CropDiseasesDetection_springboot/src/test/java/com/example/Kcsj/WorkIoContractTests.java",
+    "sha256": "55980b5b73963c2aea88e94db8912c8258cb922a0d0493591f4eb2c4078d58fd"
+  },
+  {
+    "path": "frontend/shared/table-output.ts",
+    "localSource": "CropDiseasesDetection_vue/shared/table-output.ts",
+    "sha256": "1dfc7829270f458133536be3730ff3089db04f5b41d52e816bb7b6c9aadc02d3"
+  },
+  {
+    "path": "frontend/shared/csv.ts",
+    "localSource": "CropDiseasesDetection_vue/shared/csv.ts",
+    "sha256": "79ceb8510b2fec8199d6d697a20f1ab4230c30c22e7f96d7088848acbb6617e6"
+  },
+  {
+    "path": "frontend/src/components/ChatRecordOutput.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/ChatRecordOutput.vue",
+    "sha256": "5ee90d380c7a3c653ff71098fb89a817d1dbc11e320585ce6a6ac0359817119a"
+  },
+  {
+    "path": "frontend/src/components/WorkImport.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/WorkImport.vue",
+    "sha256": "5b4cc465e35c3b8f6ca14cbb2edf4e59dcf620c11fd9dd29db2bc5d602bb8346"
+  },
+  {
+    "path": "frontend/src/components/InternalChat.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/InternalChat.vue",
+    "sha256": "3a0603885ed9b12e6049504bdd55dfc915e8ac5b99cddd7e506703944749c127"
+  },
+  {
+    "path": "frontend/src/components/StudentRegistry.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/StudentRegistry.vue",
+    "sha256": "2241363e98dbf31a29134268f28da55663843c88a53e08d291bc7826b032f961"
+  },
+  {
+    "path": "frontend/src/components/CollegeWork.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/CollegeWork.vue",
+    "sha256": "77cc1d59475b372355c2de9f809fe5051cc43cfbcd43698756913f8fc172e26e"
+  },
+  {
+    "path": "frontend/src/components/RetentionGovernance.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/RetentionGovernance.vue",
+    "sha256": "8456eeb66bb01847c68e84d7fcd97d3d631579f4bf0c129aca45d2bc953ada12"
+  },
+  {
+    "path": "frontend/src/components/MaterialUpload.vue",
+    "localSource": "CropDiseasesDetection_vue/src/components/MaterialUpload.vue",
+    "sha256": "f10035172480df644e1d8fe09c08d9ea629072bab0aedaf4124c5b63c24ef87c"
+  },
+  {
+    "path": "frontend/src/App.vue",
+    "localSource": "CropDiseasesDetection_vue/src/App.vue",
+    "sha256": "be3078bc56d71c972469b7c458f6bf47e60e55db76697c8f649a380a5d87d503"
+  },
+  {
+    "path": "frontend/mobile/src/components/MobileChat.vue",
+    "localSource": "CropDiseasesDetection_vue/mobile/src/components/MobileChat.vue",
+    "sha256": "3600ef69c17220b73c18adddcf6927112383efe7225c2f0ffab628b24e570432"
+  },
+  {
+    "path": "frontend/mobile/src/components/MobileMaterials.vue",
+    "localSource": "CropDiseasesDetection_vue/mobile/src/components/MobileMaterials.vue",
+    "sha256": "251c4a066868249198914e7d2025ea8fc97db1148bdbd5b9a4542a5628b98554"
+  },
+  {
+    "path": "frontend/tests/browser/college-work.spec.ts",
+    "localSource": "CropDiseasesDetection_vue/tests/browser/college-work.spec.ts",
+    "sha256": "4a40047a3a6964df252d4b8e713ae59c2d8dc05a9f1f6b52a4d1779eca93ec12"
+  }
+]

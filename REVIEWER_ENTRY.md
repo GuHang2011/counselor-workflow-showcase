@@ -8,6 +8,10 @@ Administrative requests often move through several roles and states. The case st
 
 This public selection focuses on the interaction model, state transitions, API contract, architecture explanation, and responsive presentation. It is not a copy of a production system.
 
+## v1.3.0 review
+
+Review [data import/output boundaries](docs/data-io-v1.3.0.md), [source](examples/app-v1.3.0/README.md), [screenshots](docs/screenshots-v1.3.0.md) and [verification](docs/evidence/v1.3.0.json).
+
 ## v1.2.0 review
 
 Review the [sticker feature and boundaries](docs/chat-stickers-v1.2.0.md), [source and artwork](examples/app-v1.2.0/README.md), [screenshots](docs/screenshots-v1.2.0.md) and [validation](docs/evidence/v1.2.0.json).
